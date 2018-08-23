@@ -1,0 +1,13 @@
+[
+  {
+    "note": "Core.get_fc_o needs to be reverted and the input args to get_common_base/parent should be list of dict",
+    "core": {
+      "template": "./python/templates/core.py.ejs",
+      "output": "./python/webgme_bindings/webgme_bindings/core.py"
+    },
+    "project": {
+      "template": "./python/templates/project.py.ejs",
+      "output": "./python/webgme_bindings/webgme_bindings/project.py"
+    }
+  }
+]

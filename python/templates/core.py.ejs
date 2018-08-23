@@ -1,0 +1,89 @@
+<%/* globals methods, Case, typeMaps */%>"""
+Generated from core.py.ejs bdased on the source code documentation of the core class.
+For more details regarding inputs and output in form of complex dictionaries see the original source docs at:
+
+%host%/docs/source/Core.html
+
+for example:
+
+https://editor.webgme.org/docs/source/Core.html
+"""
+
+
+class Core(object):
+    """
+    Class for querying and manipulating the tree graph in a gme project. Practically, each method takes at least one
+    node-dict as input. Use core.load_root(root_hash) to get an initial root-node of a the tree.
+    """
+
+    def __init__(self, webgme):
+        self._webgme = webgme
+        self._CONSTANTS = None
+
+    def _send(self, payload):
+        payload['type'] = 'core'
+        self._webgme.send_request(payload)
+        return self._webgme.handle_response()
+
+    @property
+    def CONSTANTS(self):
+        """
+        The constants associated with the Core.
+        """
+        if self._CONSTANTS is None:
+            self._CONSTANTS = self._send({'name': 'CONSTANTS', 'args': []})
+
+        return self._CONSTANTS
+<%
+for (var i = 0; i < methods.length; i += 1) {
+    let j;
+    const method = methods[i];
+    const argParams = method.args.map((argInfo) => {
+        if (argInfo.optional) {
+            return `${Case.snake(argInfo.name)}=None`;
+        } else {
+            return Case.snake(argInfo.name);
+        }
+    }).join(', ');%>
+    def <%=Case.snake(method.name)%>(self<%-argParams ? ', ' : ''%><%-argParams%>):
+        """
+        <%-method.description.replace(/\r/g, '\r        ')%>
+
+<%  for (j = 0; j < method.args.length; j += 1) {
+        const argInfo = method.args[j];
+%>        :param <%-Case.snake(argInfo.name)%>: <%-argInfo.description.replace(/\r/g, '\r        ');%>
+        :type <%-Case.snake(argInfo.name)%>: <%-argInfo.type.names.map((jsType) => {
+            if (typeMaps.python[jsType]) {
+                return typeMaps.python[jsType];
+            } else {
+                console.log('Missing type handling', jsType, 'in method', method.name);
+                return jsType;
+            }
+}).join(' or ');%>
+<%
+    }
+
+    for (j = 0; j < method.returns.length; j += 1) {
+        const returnInfo = method.returns[j];
+%>        :returns: <%-returnInfo.description.replace(/\r/g, '\r        ');%>
+        :rtype: <%-(returnInfo.type || {names: []} ).names.map((jsType) => {
+            if (typeMaps.python[jsType]) {
+                return typeMaps.python[jsType];
+            } else {
+                console.log('Missing type handling', jsType, 'in return of method', method.name);
+                return jsType;
+            }
+}).join(' or ');%><%
+    }
+
+    for (j = 0; j < method.exceptions.length; j += 1) {
+        const errInfo = method.exceptions[j];
+        const pyType = typeMaps.python[errInfo.type.names[0]] ? typeMaps.python[errInfo.type.names[0]] :errInfo.type.names[0];%>
+        :raises <%-pyType%>: <%-errInfo.description.replace(/\r/g, ' ');%><%
+    }
+%>
+        """
+        return self._send({'name': '<%-method.name%>', 'args': [<%-method.args.map(argInfo => Case.snake(argInfo.name)).join(', ')%>]})
+<%
+}
+%>

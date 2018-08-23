@@ -1,0 +1,15 @@
+{
+  "source": {
+    "include": [
+      "node_modules/webgme-engine/src/common/core/core.js",
+      "node_modules/webgme-engine/src/common/storage/project/interface.js"
+    ]
+  },
+  "opts": {
+    "encoding": "utf8",
+    "template": "./node_modules/jsdoc-json",
+    "destination": "./scripts/jsdoc.json",
+    "recurse": true
+  },
+  "plugins": []
+}

@@ -1,0 +1,5 @@
+build
+dist
+webgme_bindings.egg-info
+htmlcov
+.coverage

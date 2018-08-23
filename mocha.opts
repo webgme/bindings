@@ -1,0 +1,5 @@
+--exit
+--require babel-register
+--recursive
+-R spec
+test

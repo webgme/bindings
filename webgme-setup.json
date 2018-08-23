@@ -1,0 +1,13 @@
+{
+  "components": {
+    "plugins": {
+      "PythonBindings": {
+        "src": "src/plugins/PythonBindings",
+        "test": "test/plugins/PythonBindings"
+      }
+    }
+  },
+  "dependencies": {
+    "plugins": {}
+  }
+}
