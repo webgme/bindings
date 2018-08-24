@@ -8,6 +8,8 @@ from .project import Project
 from .util import Util
 from .exceptions import CoreIllegalArgumentError, CoreIllegalOperationError, CoreInternalError, JSError
 
+is_python_3 = sys.version_info > (3, 0)
+
 
 class WebGME(object):
     """
@@ -61,7 +63,10 @@ class WebGME(object):
 
     def send_request(self, payload):
         self.logger.debug('send_request: {0}'.format(payload))
-        self._socket.send(json.dumps(payload))
+        if is_python_3:
+            self._socket.send_string(json.dumps(payload))
+        else:
+            self._socket.send(json.dumps(payload))
 
     def handle_response(self):
         raw_res = self._socket.recv()
