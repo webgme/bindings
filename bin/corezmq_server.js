@@ -169,6 +169,7 @@ if (require.main === module) {
             console.log('  Examples:');
             console.log();
             console.log('    $ node coremq_server.js MyProject');
+            console.log('    $ node coremq_server.js MyProject -m ./src/plugins/MyPythonPlugin/metadata.json');
             console.log('    $ node coremq_server.js MyProject -p 5656 -s http://127.0.0.1:8888');
             console.log();
         })

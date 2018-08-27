@@ -19,7 +19,7 @@ webgme new plugin MyPythonPlugin --language Python
 ### Getting started
 Before getting started make sure that you have [all the webgme dependencies and set
 up and a webgme-app repo initialized and working](https://webgme.readthedocs.io/en/latest/getting_started/dependencies.html).
-Make sure your webgme version is >= 2.30.0 (and the webgme-engine version >= 2.21.0 in the global webgme-cli module).
+Make sure your webgme version is >= 2.30. (and the webgme-engine version >= 2.21.0 in the global webgme-cli module).
 
 - Add `webgme-bindings` as a dependency.
 ```
@@ -27,12 +27,6 @@ npm install webgme-bindings --save
 ```
 
 If everything worked out so far, at this point all the nodejs side dependencies are satisfied.
-
-One last thing before proceeding. Since the non-native plugins must run on the server, server-side execution of plugins must be enabled.
-In your `./config/config.default.js` add the following line (right before the `module.exports = config;` statement:
-```javascript
-config.plugin.allowServerExecution = true;
-```
 
 #### Setting up Python
 The python api is confirmed to work both with both `2.7` and `3.x`. The only third part dependency is
@@ -43,6 +37,47 @@ Note that in the Python API strings are documented as `str` even though in pytho
 
 1. Install python and make sure it's added to PATH (typing `python` in a shell/cmd should start the python REPL).
 2. Install [pip](https://pypi.org/project/pip/) (with the later versions of python 3 it comes packaged with some installers).
+
+#### Generating a python plugin
+From the root of your repository generate a new plugin with (replacing `MyPythonPlugin` with something more suitable):
+```
+webgme new plugin MyPythonPlugin --language Python
+```
+
+This will generate three python files:
+- `run_plugin.py` - The entry point when running MyPythonPlugin.js
+- `run_debug.py` - An entry point for debugging the python code.
+- `MyPythonPlugin/__init__py` - The actual implementation of your python plugin.
+
+Make sure to read through the documentation at the top of each file!
+
+Since the python plugins must run on the server, server-side execution of plugins must be enabled.
+In your `./config/config.default.js` add the following line (right before the `module.exports = config;` statement:
+```javascript
+config.plugin.allowServerExecution = true;
+```
+
+##### Debugging the plugin
+Note that both of these commands should run from the root of your repository:
+1. Running the JS plugin from command-line:
+```
+node node_modules/webgme-engine/src/bin/run_plugin.js MyPythonPlugin MyProject
+```
+2. Running the python plugin as main process:
+```
+python src/plugins/MyPythonPlugin/run_debug.py
+```
+
+
+For details about more options do:
+1. Run_plugin options:
+```
+node node_modules/webgme-engine/src/bin/run_plugin.js --help
+```
+2. corezmq_server options (called from `run_debug.py`)
+```
+node node_modules/webgme-bindings/bin/corezmq_server.js --help
+```
 
 ##### Installing from https://pypi.org/
 
