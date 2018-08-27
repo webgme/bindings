@@ -14,3 +14,6 @@ before_script:
   - "sudo pip install -U pip"
   - "cd python/webgme_bindings"
   - "sudo pip install -e ."
+
+script:
+  - "npm run test"
