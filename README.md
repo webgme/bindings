@@ -93,6 +93,23 @@ It is:
 
 
 ## Developers
+### Some notes on versioning
+Compatible clients (e.g. python) and server (the npm module) should always have the same major version.
+
+##### When to bump the major version?
+1. When the webgme-engine version needs to be bumped (see below for details).
+2. If any currently published clients (e.g. python package) aren't compatible with the new server.
+
+###### If a new version of webgme-engine is required.
+
+1. Modify the version of the webgme-engine peerDependency to include a max version to the previous engine (e.g. `"^2.21.0 <= 2.23.0"`)
+2. Publish `webgme-bindings` under a new **micro** version
+3. Modify the version of the webgme-engine peerDependency to have the new engine version as the minimum (e.g. `"^2.24.0"`)
+4. Publish `webgme-bindings` under a new **major** version
+5. Publish all clients (e.g. python) under the new **major** version as well
+
+(If a new major version of `webgme-bindings` is released without any new requirements on webgme-engine the last step still needs to be performed.)
+
 ### Creating new NPM release
  ```
  npm install
