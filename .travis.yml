@@ -11,5 +11,6 @@ node_js:
   - "10"
 
 before_script:
-  - cd python/webgme_bindings
-  - pip install -e .
+  - "sudo pip install -U pip"
+  - "cd python/webgme_bindings"
+  - "sudo pip install -e ."
