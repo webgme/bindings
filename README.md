@@ -12,7 +12,7 @@ approach using [ZeroMQ](http://zeromq.org/).
 and invokes the non-native plugin. For python the boiler-plate code (including a debug entry) can be
 generated from `webgme-cli` with the command:
 ```
-webgme new plugin MyPythonPlugin --language python
+webgme new plugin MyPythonPlugin --language Python
 ```
 
 
@@ -65,4 +65,14 @@ It is:
 - open source and has a non-invasive [license](http://zeromq.org/area:licensing).
 
 
-### Performance
+## Developers
+
+### Creating new NPM release
+ ```
+ npm install
+ npm version 1.0.0 -m "Release %s"
+ git push origin master
+ git checkout v1.0.0
+ git push origin v1.0.0
+ npm publish ./
+ ```
