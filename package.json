@@ -1,6 +1,10 @@
 {
   "name": "webgme-bindings",
   "version": "1.0.0-beta1",
+  "author": {
+    "name": "WebGME Development Team",
+    "url": "https://webgme.org"
+  },
   "description": "WebGME API bindings for other languages than JavaScript",
   "main": "index.js",
   "engines": {
@@ -12,13 +16,15 @@
   },
   "keywords": [
     "webgme",
-    "component"
+    "webgme-component",
+    "python",
+    "webgme-apis"
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/webgme/bindings/issues"
   },
-  "homepage": "https://github.com/webgme/bindings#README.md",
+  "homepage": "https://github.com/webgme/bindings#webgme-bindings",
   "scripts": {
     "start": "node app.js",
     "test": "mocha --opts ./mocha.opts",
