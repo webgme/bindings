@@ -1,18 +1,13 @@
 import setuptools
 
-with open("README.rst", "r") as fh:
-    long_description = fh.read()
-
 setuptools.setup(
     name="webgme_bindings",
-    version="0.1.0",
+    version="1.0.0",
     license='MIT',
     author="Patrik Meijer",
     author_email="webgme@vanderbilt.edu",
     description="Package containing webgme-bindings through zeromq",
-    long_description=long_description,
-    long_description_content_type="text/rst",
-    url="https://github.com/webgme/core-bindings",
+    url="https://github.com/webgme/bindings",
     packages=setuptools.find_packages(),
     install_requires=[
         'pyzmq'

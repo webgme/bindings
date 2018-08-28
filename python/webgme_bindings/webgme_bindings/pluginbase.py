@@ -3,25 +3,59 @@ from .exceptions import JSError, CoreIllegalArgumentError, CoreIllegalOperationE
 
 
 class PluginBase(object):
+    """
+    This is the base-class for webgme-plugins in Python. Use `webgme-cli <https://github.com/webgme/webgme-cli>`_ \
+    for generating the boiler-plate code for a python-plugin.
+    """
     def __init__(self, webgme, commit_hash, branch_name=None, active_node='', active_selection=None, nsp=''):
         """
 
         :param webgme: An instance of an already connected WebGME class
         :type webgme: WebGME
+        :param commit_hash: The commit-hash of the current invocation
+        :type commit_hash: str
+        :param branch_name: The branch of the current invocation
+        :type branch_name: str or None
+        :param active_node: Path to the active-node of the current invocation
+        :type active_node: str
+        :param active_selection: List of paths to the active-selection of the current invocation
+        :type active_selection: list of str or None
+        :param nsp: The namespace the plugin is running under
+        :type nsp: str
         """
         self._webgme = webgme
+
+        #: Instance of logger (regular python logger)
         self.logger = webgme.logger
+
+        #: An instance of webgme_bindings.Core
         self.core = webgme.core
+
+        #: An instance of webgme_bindings.Project
         self.project = webgme.project
+
+        #: An instance of webgme_bindings.Util
         self.util = webgme.util
+
         self._META = None
 
+        #: The current commit-hash (str)
         self.commit_hash = commit_hash
+
+        #: The current branch (str or None)
         self.branch_name = branch_name
+
+        #: The namespace the plugin is running under (str)
         self.namespace = nsp
         root_hash = self.project.get_root_hash(commit_hash)
+
+        #: The root-node of the current invocation (dict)
         self.root_node = self.core.load_root(root_hash)
+
+        #: The active-node of the current invocation (dict)
         self.active_node = self.core.load_by_path(self.root_node, active_node)
+
+        #: The active-selection nodes of the current invocation (list of dict)
         self.active_selection = []
 
         if active_selection is not None:
@@ -29,14 +63,23 @@ class PluginBase(object):
                 self.active_selection.append(self.core.load_by_path(self.root_node, as_path))
 
     def main(self):
+        """
+        Main invocation point for a plugin. This must be implemented in the derived classes.
+        """
         raise NotImplementedError('plugin.main must be implemented in derived class!')
 
     @property
     def gme_config(self):
+        """
+        A nested dictionary with `configuration parameters for webgme <https://github.com/webgme/webgme/tree/master/config>`_.
+        """
         return self.util.gme_config
 
     @property
     def META(self):
+        """
+        Dictionary from name of meta-node to node dict.
+        """
         if self._META is None:
             self._META = self.util.META(self.root_node, self.namespace)
 
@@ -49,7 +92,7 @@ class PluginBase(object):
 
     def add_artifact(self, name, files):
         """
-        Adds multiple files to the blob storage and bundles them as an artifact of which the hash is added to the
+        Adds multiple files to the blob storage and bundles them as an artifact of which the hash is added to the\
         plugin-result.
 
         :param name: name of the file bundle.
@@ -131,12 +174,12 @@ class PluginBase(object):
 
     def send_notification(self, message):
         """
-        Sends a notification back to the invoker of the plugin, can be used to notify about progress.
-        Message can either be a string or a dictionary with keys, 'message', 'progress', 'severity'
-        and 'toBranch'. If an object is passed 'message' must be provided - all other are optional.
-        'progress' - Approximate progress (in %) of the plugin at time of sending.
-        'severity' - Severity level ('success', 'info', 'warn', 'error')
-        'toBranch' - If true, and the plugin is running on the server on a branch the notification will be
+        Sends a notification back to the invoker of the plugin, can be used to notify about progress.\
+        Message can either be a string or a dictionary with keys, 'message', 'progress', 'severity'\
+        and 'toBranch'. If an object is passed 'message' must be provided - all other are optional.\
+        'progress' - Approximate progress (in %) of the plugin at time of sending.\
+        'severity' - Severity level ('success', 'info', 'warn', 'error')\
+        'toBranch' - If true, and the plugin is running on the server on a branch the notification will be\
         broadcast to all sockets in the branch room.
 
         :param message: Message string or object containing message.

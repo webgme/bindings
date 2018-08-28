@@ -1,12 +1,11 @@
 """
-Generated from core.py.ejsb ased on the source code documentation of the core class.
 For more details regarding inputs and output in form of complex dictionaries see the original source docs at:
 
 %host%/docs/source/Core.html
 
 for example:
 
-https://editor.webgme.org/docs/source/Core.html
+`https://editor.webgme.org/docs/source/Core.html <https://editor.webgme.org/docs/source/Core.html>`_
 """
 
 
@@ -28,7 +27,7 @@ class Core(object):
     @property
     def CONSTANTS(self):
         """
-        The constants associated with the Core.
+        A dictionary with the `constants associated with the Core <https://github.com/webgme/webgme-engine/blob/master/src/common/core/constants.js>`_.
         """
         if self._CONSTANTS is None:
             self._CONSTANTS = self._send({'name': 'CONSTANTS', 'args': []})
@@ -37,13 +36,13 @@ class Core(object):
 
     def add_library(self, node, name, library_root_hash, library_info=None):
         """
-        It adds a project as library to your project by copying it over. The library will be a node        with the given name directly under your project's ROOT. It becomes a read-only portion of your project.        You will only be able to manipulate it with library functions, but cannot edit the individual nodes inside.        However you will be able to instantiate or copy the nodes into other places of your project. Every node        that was part of the META in the originating project becomes part of your project's meta.
+        It adds a project as library to your project by copying it over. The library will be a node\        with the given name directly under your project's ROOT. It becomes a read-only portion of your project.\        You will only be able to manipulate it with library functions, but cannot edit the individual nodes inside.\        However you will be able to instantiate or copy the nodes into other places of your project. Every node\        that was part of the META in the originating project becomes part of your project's meta.
 
         :param node: any regular node in your project.
         :type node: dict
         :param name: the name of the library you wish to use as a namespace in your project.
         :type name: str
-        :param library_root_hash: the hash of your library's root        (must exist in the project's collection at the time of call).
+        :param library_root_hash: the hash of your library's root\        (must exist in the project's collection at the time of call).
         :type library_root_hash: str
         :param library_info: information about your project.
         :type library_info: dict
@@ -92,11 +91,11 @@ class Core(object):
 
     def apply_resolution(self, conflict):
         """
-        When our attempt to merge two patches ended in some conflict, then we can modify that result highlighting        that in case of every conflict, which side we prefer (mine vs. theirs). If we give that object as an input        to this function, it will finish the merge resolving the conflict according our settings and present a final        patch.
+        When our attempt to merge two patches ended in some conflict, then we can modify that result highlighting\        that in case of every conflict, which side we prefer (mine vs. theirs). If we give that object as an input\        to this function, it will finish the merge resolving the conflict according our settings and present a final\        patch.
 
-        :param conflict: the object that represents our settings for every conflict and the so-far-merged        patch.
+        :param conflict: the object that represents our settings for every conflict and the so-far-merged\        patch.
         :type conflict: dict
-        :returns: The function results in a tree structured patch object that contains the changesthat cover        both parties modifications (and the conflicts are resolved according the input settings).
+        :returns: The function results in a tree structured patch object that contains the changesthat cover\        both parties modifications (and the conflicts are resolved according the input settings).
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -127,7 +126,7 @@ class Core(object):
         :type node: dict
         :param path: the path of the mixin node.
         :type path: str
-        :returns: Returns an object with isOk set to true if the given path can be added as a        mixin to the given node. If it cannot, the reason will be reported under reason.
+        :returns: Returns an object with isOk set to true if the given path can be added as a\        mixin to the given node. If it cannot, the reason will be reported under reason.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -136,7 +135,7 @@ class Core(object):
 
     def clear_meta_rules(self, node):
         """
-        Removes all META rules defined at the node. Note that it does not clear any rules from other meta-nodes        where the node if referenced.
+        Removes all META rules defined at the node. Note that it does not clear any rules from other meta-nodes\        where the node if referenced.
 
         :param node: the node in question.
         :type node: dict
@@ -185,7 +184,7 @@ class Core(object):
         :type nodes: list of dict
         :param parent: the parent node of the copy.
         :type parent: dict
-        :returns: The function returns an array of the copied nodes. The order follows        the order of originals.
+        :returns: The function returns an array of the copied nodes. The order follows\        the order of originals.
         :rtype: list of dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -577,13 +576,13 @@ class Core(object):
 
     def generate_tree_diff(self, source_root, target_root):
         """
-        Generates a differential tree among the two states of the project that contains the necessary changes        that can modify the source to be identical to the target. The result is in form of a json object.
+        Generates a differential tree among the two states of the project that contains the necessary changes\        that can modify the source to be identical to the target. The result is in form of a json object.
 
         :param source_root: the root node of the source state.
         :type source_root: dict
         :param target_root: the root node of the target state.
         :type target_root: dict
-        :returns: the difference between the two containment hierarchies in        a special JSON object
+        :returns: the difference between the two containment hierarchies in\        a special JSON object
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises JSError: the status of the exectuion.
@@ -597,7 +596,7 @@ class Core(object):
 
         :param node: any node of the containment hierarchy.
         :type node: dict
-        :returns: The function returns a dictionary. The keys of the dictionary        are the absolute paths of the META nodes of the project. Every value of the dictionary        is a {@link module:Core~Node}.
+        :returns: The function returns a dictionary. The keys of the dictionary\        are the absolute paths of the META nodes of the project. Every value of the dictionary\        is a {@link module:Core~Node}.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -614,7 +613,7 @@ class Core(object):
         :type name: str
         :param member: the child.
         :type member: dict
-        :returns: The owner and the target of the aspect meta-rule that makes member a        valid member of the named aspect of node.
+        :returns: The owner and the target of the aspect meta-rule that makes member a\        valid member of the named aspect of node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -646,7 +645,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the aspect.
         :type name: str
-        :returns: The function returns a list of absolute paths of nodes that are valid children of the node        and fits to the META rules defined for the aspect. Any children, visible under the given aspect of the node        must be an instance of at least one node represented by the absolute paths.
+        :returns: The function returns a list of absolute paths of nodes that are valid children of the node\        and fits to the META rules defined for the aspect. Any children, visible under the given aspect of the node\        must be an instance of at least one node represented by the absolute paths.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -661,7 +660,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the attribute.
         :type name: str
-        :returns: The function returns the value of the attribute of the node.        If the value is undefined that means the node do not have        such attribute defined.
+        :returns: The function returns the value of the attribute of the node.\        If the value is undefined that means the node do not have\        such attribute defined.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -676,7 +675,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the attribute in question.
         :type name: str
-        :returns: The meta-node that defines the attribute and makes it valid attribute for the        given node.
+        :returns: The meta-node that defines the attribute and makes it valid attribute for the\        given node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -741,11 +740,11 @@ class Core(object):
 
     def get_base_type(self, node):
         """
-        Returns the meta-node of the node in question, that is the first base node that is part of the meta.        (Aliased getMetaType).
+        Returns the meta-node of the node in question, that is the first base node that is part of the meta.\        (Aliased getMetaType).
 
         :param node: the node in question
         :type node: dict
-        :returns: Returns the first node (including itself) among the inheritance chain        that is a META node. It returns null if it does not find such node (ideally the only node with this result        is the ROOT).
+        :returns: Returns the first node (including itself) among the inheritance chain\        that is a META node. It returns null if it does not find such node (ideally the only node with this result\        is the ROOT).
         :rtype: dict or None
         :raises CoreIllegalArgumentError: If node is not a Node
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -758,7 +757,7 @@ class Core(object):
 
         :param node: the node in question
         :type node: dict
-        :returns: Returns the closest Meta node that is a base of the given node        plus it returns all the mixin nodes associated with the base.
+        :returns: Returns the closest Meta node that is a base of the given node\        plus it returns all the mixin nodes associated with the base.
         :rtype: list of dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -773,7 +772,7 @@ class Core(object):
         :type node: dict
         :param child: the child.
         :type child: dict
-        :returns: The owner and the target of the containment meta-rule that makes child a        valid child of node.
+        :returns: The owner and the target of the containment meta-rule that makes child a\        valid child of node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -787,7 +786,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns a dictionary of        {@link module:Core~ObjectHash} that stored in pair with the relative id of the corresponding        child of the node.
+        :returns: The function returns a dictionary of\        {@link module:Core~ObjectHash} that stored in pair with the relative id of the corresponding\        child of the node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -800,7 +799,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns a detailed JSON structure that represents the META        rules regarding the possible children of the node.
+        :returns: The function returns a detailed JSON structure that represents the META\        rules regarding the possible children of the node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -833,11 +832,11 @@ class Core(object):
 
     def get_closure_information(self, nodes):
         """
-        Collects the necessary information to export the set of input nodes and use it in other        - compatible - projects.
+        Collects the necessary information to export the set of input nodes and use it in other\        - compatible - projects.
 
         :param nodes: the set of nodes that we want to export
         :type nodes: list of dict
-        :returns: If the closure is available for export, the returned special JSON object        will contain information about the necessary data that needs to be exported as well as relations        that will need to be recreated in the destination project to preserve the structure of nodes.
+        :returns: If the closure is available for export, the returned special JSON object\        will contain information about the necessary data that needs to be exported as well as relations\        that will need to be recreated in the destination project to preserve the structure of nodes.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -866,7 +865,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the pointer.
         :type name: str
-        :returns: The function returns an array of absolute paths of nodes that        has the pointer pointing to the node.
+        :returns: The function returns an array of absolute paths of nodes that\        has the pointer pointing to the node.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -907,7 +906,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the constraint.
         :type name: str
-        :returns: Returns the defined constraint or null if it was not        defined for the node.
+        :returns: Returns the defined constraint or null if it was not\        defined for the node.
         :rtype: dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -943,11 +942,11 @@ class Core(object):
 
     def get_fully_qualified_name(self, node):
         """
-        Returns the fully qualified name of the node, which is the list of its namespaces separated        by dot and followed by the name of the node.
+        Returns the fully qualified name of the node, which is the list of its namespaces separated\        by dot and followed by the name of the node.
 
         :param node: the node in question.
         :type node: dict
-        :returns: Returns the fully qualified name of the node,        i.e. its namespaces and name join together by dots.
+        :returns: Returns the fully qualified name of the node,\        i.e. its namespaces and name join together by dots.
         :rtype: str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -973,7 +972,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: Returns the hash value of the data for the given node.        An empty string is returned when the node was mutated and not persisted.
+        :returns: Returns the hash value of the data for the given node.\        An empty string is returned when the node was mutated and not persisted.
         :rtype: str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1008,11 +1007,11 @@ class Core(object):
 
     def get_library_guid(self, node, name=None):
         """
-        Returns the origin GUID of any library node. (If name is not provided the returned GUID will be the same        across all projects where the library node is contained - regardless of library hierarchy.)
+        Returns the origin GUID of any library node. (If name is not provided the returned GUID will be the same\        across all projects where the library node is contained - regardless of library hierarchy.)
 
         :param node: the node in question.
         :type node: dict
-        :param name: name of the library where we want to compute the GUID from.        If not given, then the GUID is computed from the direct library root of the node.
+        :param name: name of the library where we want to compute the GUID from.\        If not given, then the GUID is computed from the direct library root of the node.
         :type name: None or str
         :returns: Returns the origin GUID of the node.
         :rtype: str
@@ -1030,7 +1029,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the library.
         :type name: str
-        :returns: Returns the information object, stored alongside the library (that basically        carries metaData about the library).
+        :returns: Returns the information object, stored alongside the library (that basically\        carries metaData about the library).
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1040,7 +1039,7 @@ class Core(object):
 
     def get_library_meta_nodes(self, node, name, only_own=None):
         """
-        Returns all the Meta nodes within the given library.        By default it will include nodes defined in any library within the given library.
+        Returns all the Meta nodes within the given library.\        By default it will include nodes defined in any library within the given library.
 
         :param node: any node of your project.
         :type node: dict
@@ -1048,7 +1047,7 @@ class Core(object):
         :type name: str
         :param only_own: if true only returns with Meta nodes defined in the library itself.
         :type only_own: bool
-        :returns: Returns an array of core nodes that are part of your meta from        the given library.
+        :returns: Returns an array of core nodes that are part of your meta from\        the given library.
         :rtype: list of dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1061,7 +1060,7 @@ class Core(object):
 
         :param node: any node in your project.
         :type node: dict
-        :returns: Returns the fully qualified names of all the libraries in your project        (even embedded ones).
+        :returns: Returns the fully qualified names of all the libraries in your project\        (even embedded ones).
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1095,7 +1094,7 @@ class Core(object):
         :type path: str
         :param attr_name: the name of the attribute.
         :type attr_name: str
-        :returns: Return the value of the attribute. If it is undefined,        then there is no such attributed connected to the given set membership.
+        :returns: Return the value of the attribute. If it is undefined,\        then there is no such attributed connected to the given set membership.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1133,7 +1132,7 @@ class Core(object):
         :type path: str
         :param attr_name: the name of the attribute.
         :type attr_name: str
-        :returns: Return the value of the attribute. If it is undefined,        then there is no such attributed connected to the given set membership.
+        :returns: Return the value of the attribute. If it is undefined,\        then there is no such attributed connected to the given set membership.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1171,7 +1170,7 @@ class Core(object):
         :type path: str
         :param reg_name: the name of the registry entry.
         :type reg_name: str
-        :returns: Return the value of the registry. If it is undefined,        then there is no such registry connected to the given set membership.
+        :returns: Return the value of the registry. If it is undefined,\        then there is no such registry connected to the given set membership.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1181,7 +1180,7 @@ class Core(object):
 
     def get_member_own_registry_names(self, node, name, path):
         """
-        Return the names of the registry entries defined for the set membership specifically defined to        the member node.
+        Return the names of the registry entries defined for the set membership specifically defined to\        the member node.
 
         :param node: the owner of the set.
         :type node: dict
@@ -1189,7 +1188,7 @@ class Core(object):
         :type name: str
         :param path: the absolute path of the member.
         :type path: str
-        :returns: Returns the array of names of registry entries that represents some property of the        membership.
+        :returns: Returns the array of names of registry entries that represents some property of the\        membership.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1225,7 +1224,7 @@ class Core(object):
         :type path: str
         :param reg_name: the name of the registry entry.
         :type reg_name: str
-        :returns: Return the value of the registry. If it is undefined,        then there is no such registry connected to the given set membership.
+        :returns: Return the value of the registry. If it is undefined,\        then there is no such registry connected to the given set membership.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1243,7 +1242,7 @@ class Core(object):
         :type name: str
         :param path: the absolute path of the member.
         :type path: str
-        :returns: Returns the array of names of registry entries that represents some property of the        membership.
+        :returns: Returns the array of names of registry entries that represents some property of the\        membership.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1253,11 +1252,11 @@ class Core(object):
 
     def get_meta_type(self, node):
         """
-        Returns the meta-node of the node in question, that is the first base node that is part of the meta.        (Aliased getBaseType).
+        Returns the meta-node of the node in question, that is the first base node that is part of the meta.\        (Aliased getBaseType).
 
         :param node: the node in question
         :type node: dict
-        :returns: Returns the first node (including itself) among the inheritance chain        that is a META node. It returns null if it does not find such node (ideally the only node with this result        is the ROOT).
+        :returns: Returns the first node (including itself) among the inheritance chain\        that is a META node. It returns null if it does not find such node (ideally the only node with this result\        is the ROOT).
         :rtype: dict or None
         :raises CoreIllegalArgumentError: If node is not a Node
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1266,11 +1265,11 @@ class Core(object):
 
     def get_mixin_errors(self, node):
         """
-        Checks if the mixins allocated with the node can be used.        Every mixin node should be on the Meta.        Every rule (attribute/pointer/set/aspect/containment/constraint) should be defined only in one mixin.
+        Checks if the mixins allocated with the node can be used.\        Every mixin node should be on the Meta.\        Every rule (attribute/pointer/set/aspect/containment/constraint) should be defined only in one mixin.
 
         :param node: the node to test.
         :type node: dict
-        :returns: Returns the array of violations. If the array is empty,        there is no violation.
+        :returns: Returns the array of violations. If the array is empty,\        there is no violation.
         :rtype: list of dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1296,7 +1295,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The paths of the mixins in an array ordered by their order of use (which is important        in case of some collision among definitions would arise).
+        :returns: The paths of the mixins in an array ordered by their order of use (which is important\        in case of some collision among definitions would arise).
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1305,7 +1304,7 @@ class Core(object):
 
     def get_namespace(self, node):
         """
-        Returns the resolved namespace for the node. If node is not in a library it returns the        empty string. If the node is in a library of a library -        the full name space is the library names joined together by dots.
+        Returns the resolved namespace for the node. If node is not in a library it returns the\        empty string. If the node is in a library of a library -\        the full name space is the library names joined together by dots.
 
         :param node: the node in question.
         :type node: dict
@@ -1324,7 +1323,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the attribute.
         :type name: str
-        :returns: Returns the value of the attribute defined specifically for        the node. If undefined then it means that there is no such attribute defined directly for the node, meaning        that it either inherits some value or there is no such attribute at all.
+        :returns: Returns the value of the attribute defined specifically for\        the node. If undefined then it means that there is no such attribute defined directly for the node, meaning\        that it either inherits some value or there is no such attribute at all.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1333,7 +1332,7 @@ class Core(object):
 
     def get_own_attribute_names(self, node):
         """
-        Returns the names of the attributes of the node that have been first defined for the node and not for its        bases.
+        Returns the names of the attributes of the node that have been first defined for the node and not for its\        bases.
 
         :param node: the node in question.
         :type node: dict
@@ -1359,7 +1358,7 @@ class Core(object):
 
     def get_own_children_relids(self, node):
         """
-        Collects the relative ids of all the children of the given node that has some data and not just inherited.        N.B. Do not mutate the returned array!
+        Collects the relative ids of all the children of the given node that has some data and not just inherited.\        N.B. Do not mutate the returned array!
 
         :param node: the container node in question.
         :type node: dict
@@ -1389,7 +1388,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns an object that represent the META rules that were defined        specifically for the node.
+        :returns: The function returns an object that represent the META rules that were defined\        specifically for the node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1398,13 +1397,13 @@ class Core(object):
 
     def get_own_member_paths(self, node, name):
         """
-        Returns the list of absolute paths of the members of the given set of the given node that not simply        inherited.
+        Returns the list of absolute paths of the members of the given set of the given node that not simply\        inherited.
 
         :param node: the set owner.
         :type node: dict
         :param name: the name of the set.
         :type name: str
-        :returns: Returns an array of absolute path strings of the member nodes of the set that has        information on the node's inheritance level.
+        :returns: Returns an array of absolute path strings of the member nodes of the set that has\        information on the node's inheritance level.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1433,7 +1432,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the pointer
         :type name: str
-        :returns: Returns the absolute path. If the path is null, then it means that        'no-target' was defined specifically for this node for the pointer. If undefined it means that the node        either inherits the target of the pointer or there is no pointer defined at all.
+        :returns: Returns the absolute path. If the path is null, then it means that\        'no-target' was defined specifically for this node for the pointer. If undefined it means that the node\        either inherits the target of the pointer or there is no pointer defined at all.
         :rtype: str or None or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1448,7 +1447,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the registry entry.
         :type name: str
-        :returns: Returns the value of the registry entry defined specifically        for the node. If undefined then it means that there is no such registry entry defined directly for the node,        meaning that it either inherits some value or there is no such registry entry at all.
+        :returns: Returns the value of the registry entry defined specifically\        for the node. If undefined then it means that there is no such registry entry defined directly for the node,\        meaning that it either inherits some value or there is no such registry entry at all.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1457,7 +1456,7 @@ class Core(object):
 
     def get_own_registry_names(self, node):
         """
-        Returns the names of the registry enrties of the node that have been first defined for the node        and not for its bases.
+        Returns the names of the registry enrties of the node that have been first defined for the node\        and not for its bases.
 
         :param node: the node in question.
         :type node: dict
@@ -1478,7 +1477,7 @@ class Core(object):
         :type set_name: str
         :param attr_name: the name of the attribute entry.
         :type attr_name: str
-        :returns: Return the value of the attribute. If it is undefined,        then there is no such attribute at the set.
+        :returns: Return the value of the attribute. If it is undefined,\        then there is no such attribute at the set.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1504,7 +1503,7 @@ class Core(object):
 
     def get_own_set_names(self, node):
         """
-        Returns the names of the sets created specifically at the node.        N.B. When adding a member to a set of a node, the set is automatically created at the node.
+        Returns the names of the sets created specifically at the node.\        N.B. When adding a member to a set of a node, the set is automatically created at the node.
 
         :param node: the node in question.
         :type node: dict
@@ -1525,7 +1524,7 @@ class Core(object):
         :type set_name: str
         :param reg_name: the name of the registry entry.
         :type reg_name: str
-        :returns: Return the value of the registry. If it is undefined,        then there is no such registry at the set.
+        :returns: Return the value of the registry. If it is undefined,\        then there is no such registry at the set.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1563,7 +1562,7 @@ class Core(object):
 
     def get_own_valid_aspect_target_paths(self, node, name):
         """
-        Returns the paths of the meta nodes that are valid target members of the given aspect        specifically defined for the node.
+        Returns the paths of the meta nodes that are valid target members of the given aspect\        specifically defined for the node.
 
         :param node: the node in question.
         :type node: dict
@@ -1596,7 +1595,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns all the pointer names that are defined among the META        rules of the node.
+        :returns: The function returns all the pointer names that are defined among the META\        rules of the node.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1650,7 +1649,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: Returns a path string where each portion is a relative id and they are separated by '/'.        The path can be empty as well if the node in question is the  root itself, otherwise it should be a chain        of relative ids from the root of the containment hierarchy.
+        :returns: Returns a path string where each portion is a relative id and they are separated by '/'.\        The path can be empty as well if the node in question is the  root itself, otherwise it should be a chain\        of relative ids from the root of the containment hierarchy.
         :rtype: str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1667,7 +1666,7 @@ class Core(object):
         :type name: str
         :param target: the target node.
         :type target: dict
-        :returns: The owner and the target of the pointer meta-rule that makes target a        valid target of the named pointer of node.
+        :returns: The owner and the target of the pointer meta-rule that makes target a\        valid target of the named pointer of node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1683,7 +1682,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the pointer/set.
         :type name: str
-        :returns: The function returns a detailed JSON structure that        represents the META rules regarding the given pointer/set of the node.
+        :returns: The function returns a detailed JSON structure that\        represents the META rules regarding the given pointer/set of the node.
         :rtype: dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1711,7 +1710,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the pointer in question.
         :type name: str
-        :returns: The function returns the absolute path of the target node        if there is a valid target. It returns null if though the pointer is defined it does not have any        valid target. Finally, it return undefined if there is no pointer defined for the node under the given name.
+        :returns: The function returns the absolute path of the target node\        if there is a valid target. It returns null if though the pointer is defined it does not have any\        valid target. Finally, it return undefined if there is no pointer defined for the node under the given name.
         :rtype: str or None or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1726,7 +1725,7 @@ class Core(object):
         :type node: dict
         :param name: the name of the registry entry.
         :type name: str
-        :returns: The function returns the value of the registry entry        of the node. The value can be an object or any primitive type. If the value is undefined that means        the node do not have such attribute defined.
+        :returns: The function returns the value of the registry entry\        of the node. The value can be an object or any primitive type. If the value is undefined that means\        the node do not have such attribute defined.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1782,7 +1781,7 @@ class Core(object):
         :type set_name: str
         :param attr_name: the name of the attribute entry.
         :type attr_name: str
-        :returns: Return the value of the attribute. If it is undefined,        then there is no such attribute at the set.
+        :returns: Return the value of the attribute. If it is undefined,\        then there is no such attribute at the set.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1816,7 +1815,7 @@ class Core(object):
         :type name: str
         :param member: the member.
         :type member: dict
-        :returns: The owner and the target of the set meta-rule that makes member a        valid member of the named set of node.
+        :returns: The owner and the target of the set meta-rule that makes member a\        valid member of the named set of node.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1847,7 +1846,7 @@ class Core(object):
         :type set_name: str
         :param reg_name: the name of the registry entry.
         :type reg_name: str
-        :returns: Return the value of the registry. If it is undefined,        then there is no such registry at the set.
+        :returns: Return the value of the registry. If it is undefined,\        then there is no such registry at the set.
         :rtype: str or int or float or bool or dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -1877,7 +1876,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: Returns the root of the inheritance chain of the node. If returns null,        that means the node in question is the root of the chain.
+        :returns: Returns the root of the inheritance chain of the node. If returns null,\        that means the node in question is the root of the chain.
         :rtype: dict or None
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1890,7 +1889,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns all the aspect names that are defined among the META rules of the        node.
+        :returns: The function returns all the aspect names that are defined among the META rules of the\        node.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1919,7 +1918,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns all the attribute names that are defined among the META rules of the        node.
+        :returns: The function returns all the attribute names that are defined among the META rules of the\        node.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1932,7 +1931,7 @@ class Core(object):
 
         :param parameters: the input parameters of the query.
         :type parameters: dict
-        :returns: The function returns a list of valid nodes that can be instantiated as a        child of the node.
+        :returns: The function returns a list of valid nodes that can be instantiated as a\        child of the node.
         :rtype: list of dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1945,7 +1944,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns an array of absolute paths of the nodes that was defined as valid        children for the node.
+        :returns: The function returns an array of absolute paths of the nodes that was defined as valid\        children for the node.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1958,7 +1957,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns all the pointer names that are defined among the META rules        of the node.
+        :returns: The function returns all the pointer names that are defined among the META rules\        of the node.
         :rtype: list of str
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -1971,7 +1970,7 @@ class Core(object):
 
         :param parameters: the input parameters of the query.
         :type parameters: dict
-        :returns: The function returns a list of valid nodes that can be instantiated as a        member of the set of the node.
+        :returns: The function returns a list of valid nodes that can be instantiated as a\        member of the set of the node.
         :rtype: list of dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2008,13 +2007,13 @@ class Core(object):
 
     def import_closure(self, node, closure_information):
         """
-        Imports the set of nodes in the closureInformation - that has the format created by        [getClosureInformation]{@link Core#getClosureInformation} - as direct children of the parent node.        All data necessary for importing the closure has to be imported beforehand!
+        Imports the set of nodes in the closureInformation - that has the format created by\        [getClosureInformation]{@link Core#getClosureInformation} - as direct children of the parent node.\        All data necessary for importing the closure has to be imported beforehand!
 
         :param node: the parent node where the closure will be imported.
         :type node: dict
         :param closure_information: the information about the closure.
         :type closure_information: dict
-        :returns: If the closure cannot be imported the resulting error highlights the causes,        otherwise a specific object will be returned that holds information about the closure.
+        :returns: If the closure cannot be imported the resulting error highlights the causes,\        otherwise a specific object will be returned that holds information about the closure.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2027,7 +2026,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: The function returns true if the registry entry 'isAbstract' of the node if true hence        the node is abstract.
+        :returns: The function returns true if the registry entry 'isAbstract' of the node if true hence\        the node is abstract.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2053,7 +2052,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: Returns true if the node is 'empty' meaning that it is not reserved by real data.        Returns false if the node is exists and have some meaningful value.
+        :returns: Returns true if the node is 'empty' meaning that it is not reserved by real data.\        Returns false if the node is exists and have some meaningful value.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2070,7 +2069,7 @@ class Core(object):
         :type name: str
         :param path: the path of the member in question.
         :type path: str
-        :returns: Returns true if the member exists in the base of the set, but was        added to the given set as well, which means a complete override. If the set does not exist        or the member do not have a 'base' member or just some property was overridden, the function returns        false.
+        :returns: Returns true if the member exists in the base of the set, but was\        added to the given set as well, which means a complete override. If the set does not exist\        or the member do not have a 'base' member or just some property was overridden, the function returns\        false.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreIllegalOperationError: If the context of the operation is not allowed.
@@ -2086,7 +2085,7 @@ class Core(object):
         :type node: dict
         :param base_node_or_path: a potential base node (or its path) of the node
         :type base_node_or_path: dict or str
-        :returns: Returns true if the base is on the inheritance chain of node.        A node is considered to be an instance of itself here.
+        :returns: Returns true if the base is on the inheritance chain of node.\        A node is considered to be an instance of itself here.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2112,7 +2111,7 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :returns: Returns true if your node is a library root (even if it is embedded in other library),        false otherwise.
+        :returns: Returns true if your node is a library root (even if it is embedded in other library),\        false otherwise.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2125,7 +2124,7 @@ class Core(object):
 
         :param node: the node in question
         :type node: dict
-        :returns: Returns a dictionary where every the key of every entry is an absolute path of a set owner        node. The value of each entry is an array with the set names in which the node can be found as a member.
+        :returns: Returns a dictionary where every the key of every entry is an absolute path of a set owner\        node. The value of each entry is an array with the set names in which the node can be found as a member.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2138,7 +2137,7 @@ class Core(object):
 
         :param node: the node to test.
         :type node: dict
-        :returns: Returns true if the node is a member of the METAAspectSet of the ROOT node hence can be        seen as a META node.
+        :returns: Returns true if the node is a member of the METAAspectSet of the ROOT node hence can be\        seen as a META node.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2147,13 +2146,13 @@ class Core(object):
 
     def is_type_of(self, node, type_node_or_path):
         """
-        Checks if the given node in any way inherits from the typeNode. In addition to checking if the node        "isInstanceOf" of typeNode, this methods also takes mixins into account.
+        Checks if the given node in any way inherits from the typeNode. In addition to checking if the node\        "isInstanceOf" of typeNode, this methods also takes mixins into account.
 
         :param node: the node in question.
         :type node: dict
         :param type_node_or_path: the type node we want to check or its path.
         :type type_node_or_path: dict or str
-        :returns: The function returns true if the typeNodeOrPath represents a base node,        or a mixin of any of the base nodes, of the node.        Every node is considered to be a type of itself.
+        :returns: The function returns true if the typeNodeOrPath represents a base node,\        or a mixin of any of the base nodes, of the node.\        Every node is considered to be a type of itself.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2202,7 +2201,7 @@ class Core(object):
         :type node: dict
         :param parent: the parent we like to test.
         :type parent: dict
-        :returns: The function returns true if according to the META rules the node can be a child of the        parent. The check does not cover multiplicity (so if the parent can only have twi children and it already        has them, this function will still returns true).
+        :returns: The function returns true if according to the META rules the node can be a child of the\        parent. The check does not cover multiplicity (so if the parent can only have twi children and it already\        has them, this function will still returns true).
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2226,7 +2225,7 @@ class Core(object):
 
     def is_valid_new_child(self, parent_node, base_node):
         """
-        Checks if an instance of the given base can be created under the parent. It does not check for        meta consistency. It only validates if the proposed creation would cause any loops in the        combined containment inheritance trees.
+        Checks if an instance of the given base can be created under the parent. It does not check for\        meta consistency. It only validates if the proposed creation would cause any loops in the\        combined containment inheritance trees.
 
         :param parent_node: the parent in question.
         :type parent_node: dict or None
@@ -2264,7 +2263,7 @@ class Core(object):
         :type source: dict
         :param name: the name of the pointer.
         :type name: str
-        :returns: The function returns true if according to the META rules, the given node is a valid        target of the given pointer of the source.
+        :returns: The function returns true if according to the META rules, the given node is a valid\        target of the given pointer of the source.
         :rtype: bool
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2273,7 +2272,7 @@ class Core(object):
 
     def load_by_path(self, node, relative_path):
         """
-        From the given starting node, it loads the path given as a series of relative ids (separated by '/')        and returns the node it finds at the ends of the path. If there is no node, the function will return null.
+        From the given starting node, it loads the path given as a series of relative ids (separated by '/')\        and returns the node it finds at the ends of the path. If there is no node, the function will return null.
 
         :param node: the starting node of our search.
         :type node: dict
@@ -2289,7 +2288,7 @@ class Core(object):
 
     def load_child(self, parent, relative_id):
         """
-        Loads the child of the given parent pointed by the relative id. Behind the scenes, it means        that it actually loads the data pointed by a hash stored inside the parent under the given id        and wraps it in a node object which will be connected to the parent as a child in the containment        hierarchy. If there is no such relative id reserved, the call will return with null.
+        Loads the child of the given parent pointed by the relative id. Behind the scenes, it means\        that it actually loads the data pointed by a hash stored inside the parent under the given id\        and wraps it in a node object which will be connected to the parent as a child in the containment\        hierarchy. If there is no such relative id reserved, the call will return with null.
 
         :param parent: the container node in question.
         :type parent: dict
@@ -2305,7 +2304,7 @@ class Core(object):
 
     def load_children(self, node):
         """
-        Loads all the children of the given parent. As it first checks the already reserved relative ids of        the parent, it only loads the already existing children (so no on-demand empty node creation).
+        Loads all the children of the given parent. As it first checks the already reserved relative ids of\        the parent, it only loads the already existing children (so no on-demand empty node creation).
 
         :param node: the container node in question.
         :type node: dict
@@ -2365,7 +2364,7 @@ class Core(object):
 
     def load_own_children(self, node):
         """
-        Loads all the children of the given parent that has some data and not just inherited. As it first checks        the already reserved relative ids of the parent, it only loads the already existing children        (so no on-demand empty node creation).
+        Loads all the children of the given parent that has some data and not just inherited. As it first checks\        the already reserved relative ids of the parent, it only loads the already existing children\        (so no on-demand empty node creation).
 
         :param node: the container node in question.
         :type node: dict
@@ -2395,7 +2394,7 @@ class Core(object):
 
     def load_own_sub_tree(self, node):
         """
-        Loads a complete sub-tree of the containment hierarchy starting from the given node, but load only those        children that has some additional data and not purely inherited.
+        Loads a complete sub-tree of the containment hierarchy starting from the given node, but load only those\        children that has some additional data and not purely inherited.
 
         :param node: the container node in question.
         :type node: dict
@@ -2409,7 +2408,7 @@ class Core(object):
 
     def load_pointer(self, node, pointer_name):
         """
-        Loads the target of the given pointer of the given node. In the callback the node can have three values:        if the node is valid, then it is the defined target of a valid pointer,        if the returned value is null, then it means that the pointer is defined, but has no real target,        finally if the returned value is undefined than there is no such pointer defined for the given node.
+        Loads the target of the given pointer of the given node. In the callback the node can have three values:\        if the node is valid, then it is the defined target of a valid pointer,\        if the returned value is null, then it means that the pointer is defined, but has no real target,\        finally if the returned value is undefined than there is no such pointer defined for the given node.
 
         :param node: the source node in question.
         :type node: dict
@@ -2453,7 +2452,7 @@ class Core(object):
 
     def move_aspect_meta_target(self, node, target, old_name, new_name):
         """
-        Moves the given target definition over to a new aspect. As actual values in case of        relation definitions vary quite a bit from the meta-targets, this function does not deals with        the actual pointer/set target/members.
+        Moves the given target definition over to a new aspect. As actual values in case of\        relation definitions vary quite a bit from the meta-targets, this function does not deals with\        the actual pointer/set target/members.
 
         :param node: the node in question.
         :type node: dict
@@ -2509,7 +2508,7 @@ class Core(object):
 
     def move_pointer_meta_target(self, node, target, old_name, new_name):
         """
-        Moves the given target definition over to a new pointer or set.        Note this does not alter the actual pointer target or set members.
+        Moves the given target definition over to a new pointer or set.\        Note this does not alter the actual pointer target or set members.
 
         :param node: the node in question.
         :type node: dict
@@ -2529,11 +2528,11 @@ class Core(object):
 
     def persist(self, node):
         """
-        Persists the changes made in memory and computed the data blobs that needs to be saved into the database        to make the change and allow other users to see the new state of the project.
+        Persists the changes made in memory and computed the data blobs that needs to be saved into the database\        to make the change and allow other users to see the new state of the project.
 
         :param node: some node element of the modified containment hierarchy (usually the root).
         :type node: dict
-        :returns: The function returns an object which collects all the changes        on data level and necessary to update the database on server side. Keys of the returned object are 'rootHash'        and 'objects'. The values of these should be passed to project.makeCommit.
+        :returns: The function returns an object which collects all the changes\        on data level and necessary to update the database on server side. Keys of the returned object are 'rootHash'\        and 'objects'. The values of these should be passed to project.makeCommit.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2576,7 +2575,7 @@ class Core(object):
 
     def rename_attribute_meta(self, node, old_name, new_name):
         """
-        Renames the given attribute definition of the node. It also renames the default value of the definition!        As a result of this operation, all instances of node will have the new attribute, but if they have        overriden the old attribute it will remain under that name (and become meta invalid).
+        Renames the given attribute definition of the node. It also renames the default value of the definition!\        As a result of this operation, all instances of node will have the new attribute, but if they have\        overriden the old attribute it will remain under that name (and become meta invalid).
 
         :param node: the node in question.
         :type node: dict
@@ -2684,7 +2683,7 @@ class Core(object):
 
     def set_attribute(self, node, name, value):
         """
-        Sets the value of the given attribute of the given node. It defines the attribute on demand, means that it        will set the given attribute even if was ot defined for the node beforehand.
+        Sets the value of the given attribute of the given node. It defines the attribute on demand, means that it\        will set the given attribute even if was ot defined for the node beforehand.
 
         :param node: the node in question.
         :type node: dict
@@ -2720,7 +2719,7 @@ class Core(object):
 
     def set_base(self, node, base):
         """
-        Sets the base node of the given node. The function doesn't touches the properties or the children of the node        so it can cause META rule violations that needs to be corrected manually.
+        Sets the base node of the given node. The function doesn't touches the properties or the children of the node\        so it can cause META rule violations that needs to be corrected manually.
 
         :param node: the node in question.
         :type node: dict
@@ -2742,9 +2741,9 @@ class Core(object):
         :type node: dict
         :param child: the valid child node.
         :type child: dict
-        :param min: the allowed minimum number of children from this given node type (if not given or        -1 is set, then there will be no minimum rule according this child type)
+        :param min: the allowed minimum number of children from this given node type (if not given or\        -1 is set, then there will be no minimum rule according this child type)
         :type min: int
-        :param max: the allowed maximum number of children from this given node type (if not given or        -1 is set, then there will be no minimum rule according this child type)
+        :param max: the allowed maximum number of children from this given node type (if not given or\        -1 is set, then there will be no minimum rule according this child type)
         :type max: int
         :returns: Nothing is returned by the function.
         :rtype: None
@@ -2760,9 +2759,9 @@ class Core(object):
 
         :param node: the node in question.
         :type node: dict
-        :param min: the allowed minimum number of children (if not given or        -1 is set, then there will be no minimum rule according children)
+        :param min: the allowed minimum number of children (if not given or\        -1 is set, then there will be no minimum rule according children)
         :type min: int
-        :param max: the allowed maximum number of children (if not given or        -1 is set, then there will be no maximum rule according children)
+        :param max: the allowed maximum number of children (if not given or\        -1 is set, then there will be no maximum rule according children)
         :type max: int
         :returns: Nothing is returned by the function.
         :rtype: None
@@ -2792,7 +2791,7 @@ class Core(object):
 
     def set_guid(self, node, guid):
         """
-        Set the GUID of a node. As the Core itself do not checks whether the GUID already exists. The use of        this function is only advised during the creation of the node.
+        Set the GUID of a node. As the Core itself do not checks whether the GUID already exists. The use of\        this function is only advised during the creation of the node.
 
         :param node: the node in question.
         :type node: dict
@@ -2871,15 +2870,15 @@ class Core(object):
 
     def set_pointer_meta_limits(self, node, name, min=None, max=None):
         """
-        Sets the global target limits for pointer/set of the node. On META level the only distinction between        pointer and sets is the global multiplicity which has to maximize the number of possible targets to 1 in        case of 'pure' pointer definitions.
+        Sets the global target limits for pointer/set of the node. On META level the only distinction between\        pointer and sets is the global multiplicity which has to maximize the number of possible targets to 1 in\        case of 'pure' pointer definitions.
 
         :param node: the node in question.
         :type node: dict
         :param name: the name of the pointer/set.
         :type name: str
-        :param min: the allowed minimum number of children (if not given or        -1 is set, then there will be no minimum rule according targets)
+        :param min: the allowed minimum number of children (if not given or\        -1 is set, then there will be no minimum rule according targets)
         :type min: int
-        :param max: the allowed maximum number of children (if not given or        -1 is set, then there will be no maximum rule according targets)
+        :param max: the allowed maximum number of children (if not given or\        -1 is set, then there will be no maximum rule according targets)
         :type max: int
         :returns: Nothing is returned by the function.
         :rtype: None
@@ -2899,9 +2898,9 @@ class Core(object):
         :type name: str
         :param target: the valid target/member node.
         :type target: dict
-        :param min: the allowed minimum number of target/member from this given node type (if not        given or -1 is set, then there will be no minimum rule according this target type)
+        :param min: the allowed minimum number of target/member from this given node type (if not\        given or -1 is set, then there will be no minimum rule according this target type)
         :type min: int
-        :param max: the allowed maximum number of target/member from this given node type (if not        given or -1 is set, then there will be no minimum rule according this target type)
+        :param max: the allowed maximum number of target/member from this given node type (if not\        given or -1 is set, then there will be no minimum rule according this target type)
         :type max: int
         :returns: Nothing is returned by the function.
         :rtype: None
@@ -2913,13 +2912,13 @@ class Core(object):
 
     def set_registry(self, node, name, value):
         """
-        Sets the value of the given registry entry of the given node. It defines the registry entry on demand,        means that it will set the given registry entry even if was ot defined for the node beforehand.
+        Sets the value of the given registry entry of the given node. It defines the registry entry on demand,\        means that it will set the given registry entry even if was ot defined for the node beforehand.
 
         :param node: the node in question.
         :type node: dict
         :param name: the name of the registry entry.
         :type name: str
-        :param value: the new of the registry entry. Can be any primitive        type or object. Undefined is not allowed.
+        :param value: the new of the registry entry. Can be any primitive\        type or object. Undefined is not allowed.
         :type value: str or int or float or bool or dict
         :returns: Nothing is returned by the function.
         :rtype: None
@@ -2971,13 +2970,13 @@ class Core(object):
 
     def try_to_concat_changes(self, mine, theirs):
         """
-        Tries to merge two patch object. The patches ideally represents changes made by two parties. They represents        changes from the same source ending in different states. Our aim is to generate a single patch that could        cover the changes of both party.
+        Tries to merge two patch object. The patches ideally represents changes made by two parties. They represents\        changes from the same source ending in different states. Our aim is to generate a single patch that could\        cover the changes of both party.
 
         :param mine: the tree structured JSON patch that represents my changes.
         :type mine: dict
         :param theirs: the tree structured JSON patch that represents the changes of the other party.
         :type theirs: dict
-        :returns: The function returns with an object that contains the conflicts (if any) and the merged        patch.
+        :returns: The function returns with an object that contains the conflicts (if any) and the merged\        patch.
         :rtype: dict
         :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
         :raises CoreInternalError: If some internal error took place inside the core layers.
@@ -2986,13 +2985,13 @@ class Core(object):
 
     def update_library(self, node, name, library_root_hash, library_info=None):
         """
-        It updates a library in your project based on the input information. It will 'reaplace' the old        version, keeping as much information as possible regarding the instances.
+        It updates a library in your project based on the input information. It will 'reaplace' the old\        version, keeping as much information as possible regarding the instances.
 
         :param node: any regular node in your project.
         :type node: dict
         :param name: the name of the library you want to update.
         :type name: str
-        :param library_root_hash: the hash of your library's new root        (must exist in the project's collection at the time of call).
+        :param library_root_hash: the hash of your library's new root\        (must exist in the project's collection at the time of call).
         :type library_root_hash: str
         :param library_info: information about your project.
         :type library_info: dict

@@ -1,12 +1,11 @@
 <%/* globals methods, Case, typeMaps */%>"""
-Generated from core.py.ejs bdased on the source code documentation of the core class.
 For more details regarding inputs and output in form of complex dictionaries see the original source docs at:
 
 %host%/docs/source/Core.html
 
 for example:
 
-https://editor.webgme.org/docs/source/Core.html
+`https://editor.webgme.org/docs/source/Core.html <https://editor.webgme.org/docs/source/Core.html>`_
 """
 
 
@@ -28,7 +27,7 @@ class Core(object):
     @property
     def CONSTANTS(self):
         """
-        The constants associated with the Core.
+        A dictionary with the `constants associated with the Core <https://github.com/webgme/webgme-engine/blob/master/src/common/core/constants.js>`_.
         """
         if self._CONSTANTS is None:
             self._CONSTANTS = self._send({'name': 'CONSTANTS', 'args': []})
@@ -47,11 +46,11 @@ for (var i = 0; i < methods.length; i += 1) {
     }).join(', ');%>
     def <%=Case.snake(method.name)%>(self<%-argParams ? ', ' : ''%><%-argParams%>):
         """
-        <%-method.description.replace(/\r/g, '\r        ')%>
+        <%-method.description.replace(/\r/g, '\\\r        ')%>
 
 <%  for (j = 0; j < method.args.length; j += 1) {
         const argInfo = method.args[j];
-%>        :param <%-Case.snake(argInfo.name)%>: <%-argInfo.description.replace(/\r/g, '\r        ');%>
+%>        :param <%-Case.snake(argInfo.name)%>: <%-argInfo.description.replace(/\r/g, '\\\r        ');%>
         :type <%-Case.snake(argInfo.name)%>: <%-argInfo.type.names.map((jsType) => {
             if (typeMaps.python[jsType]) {
                 return typeMaps.python[jsType];
@@ -65,7 +64,7 @@ for (var i = 0; i < methods.length; i += 1) {
 
     for (j = 0; j < method.returns.length; j += 1) {
         const returnInfo = method.returns[j];
-%>        :returns: <%-returnInfo.description.replace(/\r/g, '\r        ');%>
+%>        :returns: <%-returnInfo.description.replace(/\r/g, '\\\r        ');%>
         :rtype: <%-(returnInfo.type || {names: []} ).names.map((jsType) => {
             if (typeMaps.python[jsType]) {
                 return typeMaps.python[jsType];

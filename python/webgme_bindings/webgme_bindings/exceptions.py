@@ -6,7 +6,7 @@ running nodejs process.
 
 class JSError(Exception):
     """
-     Base class for exceptions/errors raised from coremq on the java-script side while handling a request.
+    Base class for exceptions/errors raised from coremq on the java-script side while handling a request.
     """
 
     def __init__(self, err_data):
@@ -33,10 +33,10 @@ class CoreIllegalArgumentError(JSError):
 
 class CoreIllegalOperationError(JSError):
     """
-     CoreIllegalOperationError should be thrown if the set of input parameters are correct but the request
-     or the operation do not apply to the current context. Here we followed the basic javascript principles
-     in terms that whenever the user try to access a 'field' of a 'field' that does not exist, we throw.
-     For example if someone tries to get the member attributes of an non-existing member.
+     CoreIllegalOperationError should be thrown if the set of input parameters are correct but the request\
+     or the operation do not apply to the current context. Here we followed the basic javascript principles\
+     in terms that whenever the user try to access a 'field' of a 'field' that does not exist, we throw.\
+     For example if someone tries to get the member attributes of an non-existing member.\
      Trying to modify read-only nodes are captured within this category.
     """
 
@@ -46,7 +46,7 @@ class CoreIllegalOperationError(JSError):
 
 class CoreInternalError(JSError):
     """
-     CoreInternalError should be thrown if some internal ASSERTION fails, it triggers some fault inside the core
+     CoreInternalError should be thrown if some internal ASSERTION fails, it triggers some fault inside the core\
      and should typically be checked by the developer team, not the one who uses it.
     """
 

@@ -1,12 +1,11 @@
 """
-Generated from project.py.ejs based on the source code documentation of the project-interface.
 For more details regarding inputs and output in form of complex dictionaries see the original source docs at:
 
 %host%/docs/source/ProjectInterface.html
 
 for example:
 
-https://editor.webgme.org/docs/source/ProjectInterface.html
+`https://editor.webgme.org/docs/source/ProjectInterface.html <https://editor.webgme.org/docs/source/ProjectInterface.html>`_
 """
 
 
@@ -27,7 +26,7 @@ class Project(object):
     @property
     def CONSTANTS(self):
         """
-        The constants associated with the storage/project.
+        A dictionary with the `constants associated with the storage/project <https://github.com/webgme/webgme-engine/blob/master/src/common/storage/constants.js>`_.
         """
         if self._CONSTANTS is None:
             self._CONSTANTS = self._send({'name': 'CONSTANTS', 'args': []})
@@ -104,7 +103,7 @@ class Project(object):
         """
         Retrieves all branches and their current heads within the project.
 
-        :returns: An object with branch names as keys        and their commit-hashes as values.
+        :returns: An object with branch names as keys\        and their commit-hashes as values.
         :rtype: dict
         :raises JSError: The result of the execution.
         """
@@ -124,13 +123,13 @@ class Project(object):
 
     def get_commits(self, before, number):
         """
-        Retrieves and array of the latest (sorted by timestamp) commits for the project.        If timestamp is given it will get <b>number</b> of commits strictly before <b>before</b>.        If commit hash is specified that commit will be included too.        <br> N.B. due to slight time differences on different machines, ancestors may be returned before        their descendants. Unless looking for 'headless' commits 'getHistory' is the preferred method.
+        Retrieves and array of the latest (sorted by timestamp) commits for the project.\        If timestamp is given it will get <b>number</b> of commits strictly before <b>before</b>.\        If commit hash is specified that commit will be included too.\        <br> N.B. due to slight time differences on different machines, ancestors may be returned before\        their descendants. Unless looking for 'headless' commits 'getHistory' is the preferred method.
 
         :param before: Timestamp or commitHash to load history from.
         :type before: int or float or str
         :param number: Number of commits to load.
         :type number: int or float
-        :returns: The commits that match the input, ordered        by their time of insertion.
+        :returns: The commits that match the input, ordered\        by their time of insertion.
         :rtype: list of dict
         :raises JSError: The result of the execution.
         """
@@ -152,13 +151,13 @@ class Project(object):
 
     def get_history(self, start, number):
         """
-        Retrieves an array of commits starting from a branch(es) and/or commitHash(es).        <br> The result is ordered by the rules (applied in order)        <br> 1. Descendants are always returned before their ancestors.        <br> 2. By their timestamp.
+        Retrieves an array of commits starting from a branch(es) and/or commitHash(es).\        <br> The result is ordered by the rules (applied in order)\        <br> 1. Descendants are always returned before their ancestors.\        <br> 2. By their timestamp.
 
-        :param start: Branch name,        commit hash or array of these.
+        :param start: Branch name,\        commit hash or array of these.
         :type start: str or str or list of str or list of str
         :param number: Number of commits to load.
         :type number: int or float
-        :returns: The commits that match the input ordered        as explained.
+        :returns: The commits that match the input ordered\        as explained.
         :rtype: list of dict
         :raises JSError: The result of the execution.
         """
@@ -190,7 +189,7 @@ class Project(object):
         """
         Retrieves all tags and their commits hashes within the project.
 
-        :returns: An object with tag names as keys and        their commit-hashes as values.
+        :returns: An object with tag names as keys and\        their commit-hashes as values.
         :rtype: dict
         :raises JSError: The result of the execution.
         """
@@ -207,7 +206,7 @@ class Project(object):
 
     def make_commit(self, branch_name, parents, root_hash, core_objects, msg):
         """
-        Makes a commit to data base. Based on the root hash and commit message a new        {@link module:Storage.CommitObject} (with returned hash)        is generated and insert together with the core objects to the database on the server.
+        Makes a commit to data base. Based on the root hash and commit message a new\        {@link module:Storage.CommitObject} (with returned hash)\        is generated and insert together with the core objects to the database on the server.
 
         :param branch_name: Name of branch to update (none if null).
         :type branch_name: str

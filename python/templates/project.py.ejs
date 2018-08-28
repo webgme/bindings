@@ -1,12 +1,11 @@
 <%/* globals methods, Case, typeMaps */%>"""
-Generated from project.py.ejs based on the source code documentation of the project-interface.
 For more details regarding inputs and output in form of complex dictionaries see the original source docs at:
 
 %host%/docs/source/ProjectInterface.html
 
 for example:
 
-https://editor.webgme.org/docs/source/ProjectInterface.html
+`https://editor.webgme.org/docs/source/ProjectInterface.html <https://editor.webgme.org/docs/source/ProjectInterface.html>`_
 """
 
 
@@ -27,7 +26,7 @@ class Project(object):
     @property
     def CONSTANTS(self):
         """
-        The constants associated with the storage/project.
+        A dictionary with the `constants associated with the storage/project <https://github.com/webgme/webgme-engine/blob/master/src/common/storage/constants.js>`_.
         """
         if self._CONSTANTS is None:
             self._CONSTANTS = self._send({'name': 'CONSTANTS', 'args': []})
@@ -46,11 +45,11 @@ for (var i = 0; i < methods.length; i += 1) {
     }).join(', ');%>
     def <%=Case.snake(method.name)%>(self<%-argParams ? ', ' : ''%><%-argParams%>):
         """
-        <%-method.description.replace(/\r/g, '\r        ')%>
+        <%-method.description.replace(/\r/g, '\\\r        ')%>
 
 <%  for (j = 0; j < method.args.length; j += 1) {
         const argInfo = method.args[j];
-%>        :param <%-Case.snake(argInfo.name)%>: <%-argInfo.description.replace(/\r/g, '\r        ');%>
+%>        :param <%-Case.snake(argInfo.name)%>: <%-argInfo.description.replace(/\r/g, '\\\r        ');%>
         :type <%-Case.snake(argInfo.name)%>: <%-argInfo.type.names.map((jsType) => {
             if (typeMaps.python[jsType]) {
                 return typeMaps.python[jsType];
@@ -64,7 +63,7 @@ for (var i = 0; i < methods.length; i += 1) {
 
     for (j = 0; j < method.returns.length; j += 1) {
         const returnInfo = method.returns[j];
-%>        :returns: <%-returnInfo.description.replace(/\r/g, '\r        ');%>
+%>        :returns: <%-returnInfo.description.replace(/\r/g, '\\\r        ');%>
         :rtype: <%-(returnInfo.type || {names: []} ).names.map((jsType) => {
             if (typeMaps.python[jsType]) {
                 return typeMaps.python[jsType];

@@ -15,7 +15,7 @@ class Util(object):
     @property
     def gme_config(self):
         """
-        The gmeConfig in form of a dictionary.
+        A nested dictionary with `configuration parameters for webgme <https://github.com/webgme/webgme/tree/master/config>`_.
         """
         if self._gme_config is None:
             self._gme_config = self._send({'name': 'gmeConfig', 'args': []})
@@ -24,11 +24,13 @@ class Util(object):
 
     def save(self, root_node, commit_hash, branch_name=None, msg='Save initiated from python api.'):
         """
-        Persists the core tree from root node and makes a commit to the database.
-        This method is short-hand for (and does not send all persisted objects over zeromq):
+        Persists the core tree from root node and makes a commit to the database.\
+        This method is short-hand for (but does not send all persisted objects over zeromq):\
 
-        persisted = webgme.core.persist(root_node)
-        webgme.project.make_commit(branch_name, [commit_hash], persisted['rootHash'], persisted['objects'], msg)
+
+        :code:`persisted = webgme.core.persist(root_node)`
+
+        :code:`webgme.project.make_commit(branch_name, [commit_hash], persisted['rootHash'], persisted['objects'], msg)`
 
         :param root_node: root of core tree that should be persisted and committed.
         :type root_node: dict
@@ -50,8 +52,8 @@ class Util(object):
 
     def unload_root(self, node):
         """
-        Removes the reference to the root node associated with the node inside the corezmq.js module allowing
-        the tree to be garbage collected. This should typically not be needed as the typical usage of
+        Removes the reference to the root node associated with the node inside the corezmq.js module allowing\
+        the tree to be garbage collected. This should typically not be needed as the typical usage of\
         the bindings is to load and work with one (or two roots) and then terminate the corezmq.js server.
 
         :param node: any node in a core tree
@@ -67,7 +69,7 @@ class Util(object):
 
     def META(self, node, namespace=None):
         """
-        Gathers the and returns the meta nodes in the core tree associated with the node.
+        Gathers the and returns the meta nodes in the core tree associated with the node.\
         If a namespace is supplied, only meta-nodes part of the corresponding library are returned.
 
         Note that the names are fully-qualified (relative the provided namespace).
@@ -88,7 +90,7 @@ class Util(object):
 
     def equal(self, node1, node2):
         """
-        Check if two node dicts represent the same node.
+        Checks if two node dicts represent the same node.
         :param node1:
         :type node1: dict
         :param node2:
