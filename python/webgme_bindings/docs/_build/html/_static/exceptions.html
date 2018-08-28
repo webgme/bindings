@@ -1,0 +1,148 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Exceptions &#8212; webgme_bindings 1.0.0 documentation</title>
+    <link rel="stylesheet" href="classic.css" type="text/css" />
+    <link rel="stylesheet" href="pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="documentation_options.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="underscore.js"></script>
+    <script type="text/javascript" src="doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="WebGME" href="webgme.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="webgme.html" title="WebGME"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-webgme_bindings.exceptions">
+<span id="exceptions"></span><h1>Exceptions<a class="headerlink" href="#module-webgme_bindings.exceptions" title="Permalink to this headline">¶</a></h1>
+<p>Collection of Exception-classes that correspond to exceptions thrown within the
+running nodejs process.</p>
+<dl class="exception">
+<dt id="webgme_bindings.exceptions.CoreIllegalArgumentError">
+<em class="property">exception </em><code class="descclassname">webgme_bindings.exceptions.</code><code class="descname">CoreIllegalArgumentError</code><span class="sig-paren">(</span><em>err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreIllegalArgumentError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreIllegalArgumentError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><code class="xref py py-class docutils literal notranslate"><span class="pre">webgme_bindings.exceptions.JSError</span></code></a></p>
+<p>CoreIllegalArgumentError should be thrown if the type of the input parameters is not what it should be.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="webgme_bindings.exceptions.CoreIllegalOperationError">
+<em class="property">exception </em><code class="descclassname">webgme_bindings.exceptions.</code><code class="descname">CoreIllegalOperationError</code><span class="sig-paren">(</span><em>err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreIllegalOperationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreIllegalOperationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><code class="xref py py-class docutils literal notranslate"><span class="pre">webgme_bindings.exceptions.JSError</span></code></a></p>
+<p>CoreIllegalOperationError should be thrown if the set of input parameters are correct but the request     or the operation do not apply to the current context. Here we followed the basic javascript principles     in terms that whenever the user try to access a ‘field’ of a ‘field’ that does not exist, we throw.     For example if someone tries to get the member attributes of an non-existing member.     Trying to modify read-only nodes are captured within this category.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="webgme_bindings.exceptions.CoreInternalError">
+<em class="property">exception </em><code class="descclassname">webgme_bindings.exceptions.</code><code class="descname">CoreInternalError</code><span class="sig-paren">(</span><em>err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreInternalError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreInternalError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><code class="xref py py-class docutils literal notranslate"><span class="pre">webgme_bindings.exceptions.JSError</span></code></a></p>
+<p>CoreInternalError should be thrown if some internal ASSERTION fails, it triggers some fault inside the core     and should typically be checked by the developer team, not the one who uses it.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="webgme_bindings.exceptions.JSError">
+<em class="property">exception </em><code class="descclassname">webgme_bindings.exceptions.</code><code class="descname">JSError</code><span class="sig-paren">(</span><em>err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#JSError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.JSError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base class for exceptions/errors raised from coremq on the java-script side while handling a request.</p>
+<dl class="method">
+<dt id="webgme_bindings.exceptions.JSError.get_js_stack">
+<code class="descname">get_js_stack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#JSError.get_js_stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.JSError.get_js_stack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.exceptions.JSError.get_req">
+<code class="descname">get_req</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#JSError.get_req"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.JSError.get_req" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pluginbase.html">PluginBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgme.html">WebGME</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exceptions</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="webgme.html"
+                        title="previous chapter">WebGME</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_static/exceptions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="webgme.html" title="WebGME"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Vanderbilt University, ISIS.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+    </div>
+  </body>
+</html>

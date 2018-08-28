@@ -1,0 +1,228 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Util &#8212; webgme_bindings 1.0.0 documentation</title>
+    <link rel="stylesheet" href="classic.css" type="text/css" />
+    <link rel="stylesheet" href="pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="documentation_options.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="underscore.js"></script>
+    <script type="text/javascript" src="doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="WebGME" href="webgme.html" />
+    <link rel="prev" title="Project" href="project.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="webgme.html" title="WebGME"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="project.html" title="Project"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-webgme_bindings.util">
+<span id="util"></span><h1>Util<a class="headerlink" href="#module-webgme_bindings.util" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="webgme_bindings.util.Util">
+<em class="property">class </em><code class="descclassname">webgme_bindings.util.</code><code class="descname">Util</code><span class="sig-paren">(</span><em>webgme</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Contains useful utility functions outside of the core and project API.</p>
+<dl class="method">
+<dt id="webgme_bindings.util.Util.META">
+<code class="descname">META</code><span class="sig-paren">(</span><em>node</em>, <em>namespace=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.META"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.META" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gathers the and returns the meta nodes in the core tree associated with the node.        If a namespace is supplied, only meta-nodes part of the corresponding library are returned.</p>
+<p>Note that the names are fully-qualified (relative the provided namespace).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>node</strong> (<em>dict</em>) – </li>
+<li><strong>namespace</strong> (<em>str</em>) – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Dictionary where keys are the names of the meta-nodes (the equivalent of the native plugin.META)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</li>
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.CoreIllegalArgumentError" title="webgme_bindings.exceptions.CoreIllegalArgumentError"><strong>CoreIllegalArgumentError</strong></a> – If the supplied node is of wrong format</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.util.Util.equal">
+<code class="descname">equal</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.equal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if two node dicts represent the same node.
+:param node1:
+:type node1: dict
+:param node2:
+:type node2: dict
+:return: True if the nodes are equal
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.util.Util.gme_config">
+<code class="descname">gme_config</code><a class="headerlink" href="#webgme_bindings.util.Util.gme_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>A nested dictionary with <a class="reference external" href="https://github.com/webgme/webgme/tree/master/config">configuration parameters for webgme</a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.util.Util.save">
+<code class="descname">save</code><span class="sig-paren">(</span><em>root_node</em>, <em>commit_hash</em>, <em>branch_name=None</em>, <em>msg='Save initiated from python api.'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Persists the core tree from root node and makes a commit to the database.        This method is short-hand for (but does not send all persisted objects over zeromq):</p>
+<p><code class="code docutils literal notranslate"><span class="pre">persisted</span> <span class="pre">=</span> <span class="pre">webgme.core.persist(root_node)</span></code></p>
+<p><code class="code docutils literal notranslate"><span class="pre">webgme.project.make_commit(branch_name,</span> <span class="pre">[commit_hash],</span> <span class="pre">persisted['rootHash'],</span> <span class="pre">persisted['objects'],</span> <span class="pre">msg)</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>root_node</strong> (<em>dict</em>) – root of core tree that should be persisted and committed.</li>
+<li><strong>commit_hash</strong> (<em>str</em>) – commit-hash from where the now mutated root node came from</li>
+<li><strong>branch_name</strong> (<em>str</em>) – Name of branch to update (will only insert a commit if not given).</li>
+<li><strong>msg</strong> (<em>str</em>) – Commit message.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Status about the commit and branch update (same as project.makeCommit)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">dict</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</li>
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.CoreIllegalArgumentError" title="webgme_bindings.exceptions.CoreIllegalArgumentError"><strong>CoreIllegalArgumentError</strong></a> – If the supplied root_node is of wrong format</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.util.Util.unload_root">
+<code class="descname">unload_root</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.unload_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.unload_root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the reference to the root node associated with the node inside the corezmq.js module allowing        the tree to be garbage collected. This should typically not be needed as the typical usage of        the bindings is to load and work with one (or two roots) and then terminate the corezmq.js server.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node</strong> (<em>dict</em>) – any node in a core tree</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Nothing is returned by the function.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">None</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Classes</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="pluginbase.html">PluginBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project.html">Project</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgme.html">WebGME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="project.html"
+                        title="previous chapter">Project</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="webgme.html"
+                        title="next chapter">WebGME</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_static/util.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="webgme.html" title="WebGME"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="project.html" title="Project"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Vanderbilt University, ISIS.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+    </div>
+  </body>
+</html>

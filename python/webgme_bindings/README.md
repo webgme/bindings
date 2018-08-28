@@ -1,3 +1,9 @@
 ## To generate source docs
-1. `pip install Sphinx`
-2. `docs/make.bat`
+Make sure to install sphinx
+```
+pip install Sphinx
+```
+
+1. Clean up `docs/_build`
+2. Run `docs/make.bat html`
+3. Main index.html is at `docs/_build/html/index.html`

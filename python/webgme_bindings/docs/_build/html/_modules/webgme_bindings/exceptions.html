@@ -1,0 +1,145 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>webgme_bindings.exceptions &#8212; webgme_bindings 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for webgme_bindings.exceptions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Collection of Exception-classes that correspond to exceptions thrown within the</span>
+<span class="sd">running nodejs process.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="JSError"><a class="viewcode-back" href="../../_static/exceptions.html#webgme_bindings.exceptions.JSError">[docs]</a><span class="k">class</span> <span class="nc">JSError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base class for exceptions/errors raised from coremq on the java-script side while handling a request.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err_data</span><span class="p">):</span>
+        <span class="c1"># Call the base class constructor with the regular message</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">JSError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">err_data</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">js_stack</span> <span class="o">=</span> <span class="n">err_data</span><span class="p">[</span><span class="s1">&#39;stack&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">req</span> <span class="o">=</span> <span class="n">err_data</span><span class="p">[</span><span class="s1">&#39;req&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="JSError.get_js_stack"><a class="viewcode-back" href="../../_static/exceptions.html#webgme_bindings.exceptions.JSError.get_js_stack">[docs]</a>    <span class="k">def</span> <span class="nf">get_js_stack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">js_stack</span></div>
+
+<div class="viewcode-block" id="JSError.get_req"><a class="viewcode-back" href="../../_static/exceptions.html#webgme_bindings.exceptions.JSError.get_req">[docs]</a>    <span class="k">def</span> <span class="nf">get_req</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">req</span></div></div>
+
+
+<div class="viewcode-block" id="CoreIllegalArgumentError"><a class="viewcode-back" href="../../_static/exceptions.html#webgme_bindings.exceptions.CoreIllegalArgumentError">[docs]</a><span class="k">class</span> <span class="nc">CoreIllegalArgumentError</span><span class="p">(</span><span class="n">JSError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CoreIllegalArgumentError should be thrown if the type of the input parameters is not what it should be.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err_data</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CoreIllegalArgumentError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">err_data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CoreIllegalOperationError"><a class="viewcode-back" href="../../_static/exceptions.html#webgme_bindings.exceptions.CoreIllegalOperationError">[docs]</a><span class="k">class</span> <span class="nc">CoreIllegalOperationError</span><span class="p">(</span><span class="n">JSError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     CoreIllegalOperationError should be thrown if the set of input parameters are correct but the request\</span>
+<span class="sd">     or the operation do not apply to the current context. Here we followed the basic javascript principles\</span>
+<span class="sd">     in terms that whenever the user try to access a &#39;field&#39; of a &#39;field&#39; that does not exist, we throw.\</span>
+<span class="sd">     For example if someone tries to get the member attributes of an non-existing member.\</span>
+<span class="sd">     Trying to modify read-only nodes are captured within this category.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err_data</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CoreIllegalOperationError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">err_data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CoreInternalError"><a class="viewcode-back" href="../../_static/exceptions.html#webgme_bindings.exceptions.CoreInternalError">[docs]</a><span class="k">class</span> <span class="nc">CoreInternalError</span><span class="p">(</span><span class="n">JSError</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">     CoreInternalError should be thrown if some internal ASSERTION fails, it triggers some fault inside the core\</span>
+<span class="sd">     and should typically be checked by the developer team, not the one who uses it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err_data</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CoreInternalError</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">err_data</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/pluginbase.html">PluginBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/util.html">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/webgme.html">WebGME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/exceptions.html">Exceptions</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Vanderbilt University, ISIS.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,346 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>webgme_bindings.project &#8212; webgme_bindings 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for webgme_bindings.project</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">For more details regarding inputs and output in form of complex dictionaries see the original source docs at:</span>
+
+<span class="sd">%host%/docs/source/ProjectInterface.html</span>
+
+<span class="sd">for example:</span>
+
+<span class="sd">`https://editor.webgme.org/docs/source/ProjectInterface.html &lt;https://editor.webgme.org/docs/source/ProjectInterface.html&gt;`_</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Project"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project">[docs]</a><span class="k">class</span> <span class="nc">Project</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for accessing and making changes in a project repository.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">webgme</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_webgme</span> <span class="o">=</span> <span class="n">webgme</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_CONSTANTS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;project&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_webgme</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_webgme</span><span class="o">.</span><span class="n">handle_response</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">CONSTANTS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A dictionary with the `constants associated with the storage/project &lt;https://github.com/webgme/webgme-engine/blob/master/src/common/storage/constants.js&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONSTANTS</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_CONSTANTS</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;CONSTANTS&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[]})</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CONSTANTS</span>
+
+<div class="viewcode-block" id="Project.create_branch"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.create_branch">[docs]</a>    <span class="k">def</span> <span class="nf">create_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new branch with head pointing to the provided commit hash.</span>
+
+<span class="sd">        :param branch_name: Name of branch to create.</span>
+<span class="sd">        :type branch_name: str</span>
+<span class="sd">        :param new_hash: New commit hash for branch head.</span>
+<span class="sd">        :type new_hash: str</span>
+<span class="sd">        :returns: Status about the branch update.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;createBranch&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">branch_name</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.create_tag"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.create_tag">[docs]</a>    <span class="k">def</span> <span class="nf">create_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new tag pointing to the provided commit hash.</span>
+
+<span class="sd">        :param tag_name: Name of tag to create.</span>
+<span class="sd">        :type tag_name: str</span>
+<span class="sd">        :param commit_hash: Commit hash tag will point to.</span>
+<span class="sd">        :type commit_hash: str</span>
+<span class="sd">        :returns: Nothing is returned by the function.</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;createTag&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">tag_name</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.delete_branch"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.delete_branch">[docs]</a>    <span class="k">def</span> <span class="nf">delete_branch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes the branch.</span>
+
+<span class="sd">        :param branch_name: Name of branch to create.</span>
+<span class="sd">        :type branch_name: str</span>
+<span class="sd">        :param old_hash: Previous commit hash for branch head.</span>
+<span class="sd">        :type old_hash: str</span>
+<span class="sd">        :returns: Status about the branch update.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;deleteBranch&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">branch_name</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.delete_tag"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.delete_tag">[docs]</a>    <span class="k">def</span> <span class="nf">delete_tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Deletes the given tag.</span>
+
+<span class="sd">        :param tag_name: Name of tag to delete.</span>
+<span class="sd">        :type tag_name: str</span>
+<span class="sd">        :returns: Nothing is returned by the function.</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;deleteTag&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">tag_name</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.get_branch_hash"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_branch_hash">[docs]</a>    <span class="k">def</span> <span class="nf">get_branch_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the commit hash for the head of the branch.</span>
+
+<span class="sd">        :param branch_name: Name of branch.</span>
+<span class="sd">        :type branch_name: str</span>
+<span class="sd">        :returns: The commit hash.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getBranchHash&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">branch_name</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.get_branches"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_branches">[docs]</a>    <span class="k">def</span> <span class="nf">get_branches</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves all branches and their current heads within the project.</span>
+
+<span class="sd">        :returns: An object with branch names as keys\</span>
+<span class="sd">        and their commit-hashes as values.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getBranches&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[]})</span></div>
+
+<div class="viewcode-block" id="Project.get_commit_object"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_commit_object">[docs]</a>    <span class="k">def</span> <span class="nf">get_commit_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch_name_or_commit_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the commit-object at the provided branch or commit-hash.</span>
+
+<span class="sd">        :param branch_name_or_commit_hash: Name of branch or a commit-hash.</span>
+<span class="sd">        :type branch_name_or_commit_hash: str</span>
+<span class="sd">        :returns: The commit-object.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getCommitObject&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">branch_name_or_commit_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.get_commits"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_commits">[docs]</a>    <span class="k">def</span> <span class="nf">get_commits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">before</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves and array of the latest (sorted by timestamp) commits for the project.\</span>
+<span class="sd">        If timestamp is given it will get &lt;b&gt;number&lt;/b&gt; of commits strictly before &lt;b&gt;before&lt;/b&gt;.\</span>
+<span class="sd">        If commit hash is specified that commit will be included too.\</span>
+<span class="sd">        &lt;br&gt; N.B. due to slight time differences on different machines, ancestors may be returned before\</span>
+<span class="sd">        their descendants. Unless looking for &#39;headless&#39; commits &#39;getHistory&#39; is the preferred method.</span>
+
+<span class="sd">        :param before: Timestamp or commitHash to load history from.</span>
+<span class="sd">        :type before: int or float or str</span>
+<span class="sd">        :param number: Number of commits to load.</span>
+<span class="sd">        :type number: int or float</span>
+<span class="sd">        :returns: The commits that match the input, ordered\</span>
+<span class="sd">        by their time of insertion.</span>
+<span class="sd">        :rtype: list of dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getCommits&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">before</span><span class="p">,</span> <span class="n">number</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.get_common_ancestor_commit"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_common_ancestor_commit">[docs]</a>    <span class="k">def</span> <span class="nf">get_common_ancestor_commit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit_a</span><span class="p">,</span> <span class="n">commit_b</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the common ancestor of two commits. If no ancestor exists it will result in an error.</span>
+
+<span class="sd">        :param commit_a: Commit hash.</span>
+<span class="sd">        :type commit_a: str</span>
+<span class="sd">        :param commit_b: Commit hash.</span>
+<span class="sd">        :type commit_b: str</span>
+<span class="sd">        :returns: The commit hash of the common ancestor.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        :raises JSError: The result of the execution (will be non-null if e.g. the commits do not exist or have no common ancestor).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getCommonAncestorCommit&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">commit_a</span><span class="p">,</span> <span class="n">commit_b</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.get_history"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_history">[docs]</a>    <span class="k">def</span> <span class="nf">get_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves an array of commits starting from a branch(es) and/or commitHash(es).\</span>
+<span class="sd">        &lt;br&gt; The result is ordered by the rules (applied in order)\</span>
+<span class="sd">        &lt;br&gt; 1. Descendants are always returned before their ancestors.\</span>
+<span class="sd">        &lt;br&gt; 2. By their timestamp.</span>
+
+<span class="sd">        :param start: Branch name,\</span>
+<span class="sd">        commit hash or array of these.</span>
+<span class="sd">        :type start: str or str or list of str or list of str</span>
+<span class="sd">        :param number: Number of commits to load.</span>
+<span class="sd">        :type number: int or float</span>
+<span class="sd">        :returns: The commits that match the input ordered\</span>
+<span class="sd">        as explained.</span>
+<span class="sd">        :rtype: list of dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getHistory&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="n">number</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.get_project_info"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_project_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_project_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the metadata of the project.</span>
+
+<span class="sd">        :returns: An object with info about the project.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getProjectInfo&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[]})</span></div>
+
+<div class="viewcode-block" id="Project.get_root_hash"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_root_hash">[docs]</a>    <span class="k">def</span> <span class="nf">get_root_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch_name_or_commit_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the root hash at the provided branch or commit-hash.</span>
+
+<span class="sd">        :param branch_name_or_commit_hash: Name of branch or a commit-hash.</span>
+<span class="sd">        :type branch_name_or_commit_hash: str</span>
+<span class="sd">        :returns: The root hash.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getRootHash&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">branch_name_or_commit_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.get_tags"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_tags">[docs]</a>    <span class="k">def</span> <span class="nf">get_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves all tags and their commits hashes within the project.</span>
+
+<span class="sd">        :returns: An object with tag names as keys and\</span>
+<span class="sd">        their commit-hashes as values.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getTags&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[]})</span></div>
+
+<div class="viewcode-block" id="Project.get_user_id"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.get_user_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_user_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the identity of the current user of this project.</span>
+
+<span class="sd">        :returns: the userId</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getUserId&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[]})</span></div>
+
+<div class="viewcode-block" id="Project.make_commit"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.make_commit">[docs]</a>    <span class="k">def</span> <span class="nf">make_commit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">parents</span><span class="p">,</span> <span class="n">root_hash</span><span class="p">,</span> <span class="n">core_objects</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes a commit to data base. Based on the root hash and commit message a new\</span>
+<span class="sd">        {@link module:Storage.CommitObject} (with returned hash)\</span>
+<span class="sd">        is generated and insert together with the core objects to the database on the server.</span>
+
+<span class="sd">        :param branch_name: Name of branch to update (none if null).</span>
+<span class="sd">        :type branch_name: str</span>
+<span class="sd">        :param parents: Parent commit hashes.</span>
+<span class="sd">        :type parents: list of str</span>
+<span class="sd">        :param root_hash: Hash of root object.</span>
+<span class="sd">        :type root_hash: str</span>
+<span class="sd">        :param core_objects: Core objects associated with the commit.</span>
+<span class="sd">        :type core_objects: dict</span>
+<span class="sd">        :param msg: Commit message.</span>
+<span class="sd">        :type msg: str</span>
+<span class="sd">        :returns: Status about the commit and branch update.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;makeCommit&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">branch_name</span><span class="p">,</span> <span class="n">parents</span><span class="p">,</span> <span class="n">root_hash</span><span class="p">,</span> <span class="n">core_objects</span><span class="p">,</span> <span class="n">msg</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="Project.set_branch_hash"><a class="viewcode-back" href="../../_static/project.html#webgme_bindings.project.Project.set_branch_hash">[docs]</a>    <span class="k">def</span> <span class="nf">set_branch_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branch_name</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Updates the head of the branch.</span>
+
+<span class="sd">        :param branch_name: Name of branch to update.</span>
+<span class="sd">        :type branch_name: str</span>
+<span class="sd">        :param new_hash: New commit hash for branch head.</span>
+<span class="sd">        :type new_hash: str</span>
+<span class="sd">        :param old_hash: Current state of the branch head inside the database.</span>
+<span class="sd">        :type old_hash: str</span>
+<span class="sd">        :returns: Status about the branch update.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;setBranchHash&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">branch_name</span><span class="p">,</span> <span class="n">new_hash</span><span class="p">,</span> <span class="n">old_hash</span><span class="p">]})</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/pluginbase.html">PluginBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/util.html">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/webgme.html">WebGME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/exceptions.html">Exceptions</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Vanderbilt University, ISIS.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+    </div>
+  </body>
+</html>

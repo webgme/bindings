@@ -1,0 +1,282 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>webgme_bindings.pluginbase &#8212; webgme_bindings 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for webgme_bindings.pluginbase</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">.webgme</span> <span class="k">import</span> <span class="n">WebGME</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">JSError</span><span class="p">,</span> <span class="n">CoreIllegalArgumentError</span><span class="p">,</span> <span class="n">CoreIllegalOperationError</span><span class="p">,</span> <span class="n">CoreInternalError</span>
+
+
+<div class="viewcode-block" id="PluginBase"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase">[docs]</a><span class="k">class</span> <span class="nc">PluginBase</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This is the base-class for webgme-plugins in Python. Use `webgme-cli &lt;https://github.com/webgme/webgme-cli&gt;`_ \</span>
+<span class="sd">    for generating the boiler-plate code for a python-plugin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">webgme</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">,</span> <span class="n">branch_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">active_node</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">active_selection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nsp</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param webgme: An instance of an already connected WebGME class</span>
+<span class="sd">        :type webgme: WebGME</span>
+<span class="sd">        :param commit_hash: The commit-hash of the current invocation</span>
+<span class="sd">        :type commit_hash: str</span>
+<span class="sd">        :param branch_name: The branch of the current invocation</span>
+<span class="sd">        :type branch_name: str or None</span>
+<span class="sd">        :param active_node: Path to the active-node of the current invocation</span>
+<span class="sd">        :type active_node: str</span>
+<span class="sd">        :param active_selection: List of paths to the active-selection of the current invocation</span>
+<span class="sd">        :type active_selection: list of str or None</span>
+<span class="sd">        :param nsp: The namespace the plugin is running under</span>
+<span class="sd">        :type nsp: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_webgme</span> <span class="o">=</span> <span class="n">webgme</span>
+
+        <span class="c1">#: Instance of logger (regular python logger)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">webgme</span><span class="o">.</span><span class="n">logger</span>
+
+        <span class="c1">#: An instance of webgme_bindings.Core</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span> <span class="o">=</span> <span class="n">webgme</span><span class="o">.</span><span class="n">core</span>
+
+        <span class="c1">#: An instance of webgme_bindings.Project</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="n">webgme</span><span class="o">.</span><span class="n">project</span>
+
+        <span class="c1">#: An instance of webgme_bindings.Util</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">util</span> <span class="o">=</span> <span class="n">webgme</span><span class="o">.</span><span class="n">util</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_META</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1">#: The current commit-hash (str)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">commit_hash</span> <span class="o">=</span> <span class="n">commit_hash</span>
+
+        <span class="c1">#: The current branch (str or None)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">branch_name</span> <span class="o">=</span> <span class="n">branch_name</span>
+
+        <span class="c1">#: The namespace the plugin is running under (str)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span> <span class="o">=</span> <span class="n">nsp</span>
+        <span class="n">root_hash</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">get_root_hash</span><span class="p">(</span><span class="n">commit_hash</span><span class="p">)</span>
+
+        <span class="c1">#: The root-node of the current invocation (dict)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">load_root</span><span class="p">(</span><span class="n">root_hash</span><span class="p">)</span>
+
+        <span class="c1">#: The active-node of the current invocation (dict)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">load_by_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="n">active_node</span><span class="p">)</span>
+
+        <span class="c1">#: The active-selection nodes of the current invocation (list of dict)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">active_selection</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">if</span> <span class="n">active_selection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">as_path</span> <span class="ow">in</span> <span class="n">active_selection</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">active_selection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">load_by_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="n">as_path</span><span class="p">))</span>
+
+<div class="viewcode-block" id="PluginBase.main"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.main">[docs]</a>    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Main invocation point for a plugin. This must be implemented in the derived classes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;plugin.main must be implemented in derived class!&#39;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gme_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A nested dictionary with `configuration parameters for webgme &lt;https://github.com/webgme/webgme/tree/master/config&gt;`_.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">gme_config</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">META</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dictionary from name of meta-node to node dict.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_META</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_META</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">META</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root_node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">namespace</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_META</span>
+
+    <span class="k">def</span> <span class="nf">_send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="n">payload</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;plugin&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_webgme</span><span class="o">.</span><span class="n">send_request</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_webgme</span><span class="o">.</span><span class="n">handle_response</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PluginBase.add_artifact"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.add_artifact">[docs]</a>    <span class="k">def</span> <span class="nf">add_artifact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds multiple files to the blob storage and bundles them as an artifact of which the hash is added to the\</span>
+<span class="sd">        plugin-result.</span>
+
+<span class="sd">        :param name: name of the file bundle.</span>
+<span class="sd">        :type name: str</span>
+<span class="sd">        :param files: Keys are file names and values the content (as strings).</span>
+<span class="sd">        :type files: dict</span>
+<span class="sd">        :returns: The metadata-hash (the &quot;id&quot;) of the uploaded artifact.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;addArtifact&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.add_file"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.add_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a file to the blob storage and adds it to the plugin-result.</span>
+
+<span class="sd">        :param name: The name the file should be uploaded as.</span>
+<span class="sd">        :type name: str</span>
+<span class="sd">        :param content: The file content.</span>
+<span class="sd">        :type content: str</span>
+<span class="sd">        :returns: The metadata-hash (the &quot;id&quot;) of the uploaded file.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;addFile&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.create_message"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.create_message">[docs]</a>    <span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">severity</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new message for the user and adds it to the result.</span>
+
+<span class="sd">        :param node: The node related to the message.</span>
+<span class="sd">        :type node: dict</span>
+<span class="sd">        :param message: The feedback to the user.</span>
+<span class="sd">        :type message: str</span>
+<span class="sd">        :param severity: Severity level of the message: &#39;debug&#39;, &#39;info&#39; (default), &#39;warning&#39;, &#39;error&#39;.</span>
+<span class="sd">        :type severity: str</span>
+<span class="sd">        :returns: Nothing is returned by the function.</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        :raises CoreIllegalArgumentError: If some of the parameters don&#39;t match the input criteria.</span>
+<span class="sd">        :raises CoreIllegalOperationError: If the context of the operation is not allowed.</span>
+<span class="sd">        :raises CoreInternalError: If some internal error took place inside the core layers.</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;createMessage&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">node</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">severity</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.get_artifact"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.get_artifact">[docs]</a>    <span class="k">def</span> <span class="nf">get_artifact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves all the files in the artifact from the blob storage.</span>
+
+<span class="sd">        :param metadata_hash: the &quot;id&quot; of the artifact to retrieve.</span>
+<span class="sd">        :type metadata_hash: str</span>
+<span class="sd">        :returns: Keys are file names, and values the file content (as strings).</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getArtifact&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">metadata_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.get_file"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.get_file">[docs]</a>    <span class="k">def</span> <span class="nf">get_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata_hash</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the file from blob storage.</span>
+
+<span class="sd">        :param metadata_hash: the &quot;id&quot; of the file to retrieve.</span>
+<span class="sd">        :type metadata_hash: str</span>
+<span class="sd">        :returns: The file content.</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getFile&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">metadata_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.get_current_config"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.get_current_config">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the current configuration of the plugin that was set by the user and plugin manager.</span>
+
+<span class="sd">        :returns: A dictionary with the plugin config for the current execution.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getCurrentConfig&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.send_notification"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.send_notification">[docs]</a>    <span class="k">def</span> <span class="nf">send_notification</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a notification back to the invoker of the plugin, can be used to notify about progress.\</span>
+<span class="sd">        Message can either be a string or a dictionary with keys, &#39;message&#39;, &#39;progress&#39;, &#39;severity&#39;\</span>
+<span class="sd">        and &#39;toBranch&#39;. If an object is passed &#39;message&#39; must be provided - all other are optional.\</span>
+<span class="sd">        &#39;progress&#39; - Approximate progress (in %) of the plugin at time of sending.\</span>
+<span class="sd">        &#39;severity&#39; - Severity level (&#39;success&#39;, &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;)\</span>
+<span class="sd">        &#39;toBranch&#39; - If true, and the plugin is running on the server on a branch the notification will be\</span>
+<span class="sd">        broadcast to all sockets in the branch room.</span>
+
+<span class="sd">        :param message: Message string or object containing message.</span>
+<span class="sd">        :type message: str or dict</span>
+<span class="sd">        :returns: A dictionary with the plugin config for the current execution.</span>
+<span class="sd">        :rtype: dict</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;sendNotification&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">message</span><span class="p">]})</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../../index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Classes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/pluginbase.html">PluginBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/util.html">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/webgme.html">WebGME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_static/exceptions.html">Exceptions</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Vanderbilt University, ISIS.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+    </div>
+  </body>
+</html>

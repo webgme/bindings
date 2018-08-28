@@ -1,0 +1,368 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PluginBase &#8212; webgme_bindings 1.0.0 documentation</title>
+    <link rel="stylesheet" href="classic.css" type="text/css" />
+    <link rel="stylesheet" href="pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="documentation_options.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="underscore.js"></script>
+    <script type="text/javascript" src="doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Core" href="core.html" />
+    <link rel="prev" title="Welcome to webgme_bindings’s documentation!" href="../index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="core.html" title="Core"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to webgme_bindings’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-webgme_bindings.pluginbase">
+<span id="pluginbase"></span><h1>PluginBase<a class="headerlink" href="#module-webgme_bindings.pluginbase" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="webgme_bindings.pluginbase.PluginBase">
+<em class="property">class </em><code class="descclassname">webgme_bindings.pluginbase.</code><code class="descname">PluginBase</code><span class="sig-paren">(</span><em>webgme</em>, <em>commit_hash</em>, <em>branch_name=None</em>, <em>active_node=''</em>, <em>active_selection=None</em>, <em>nsp=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is the base-class for webgme-plugins in Python. Use <a class="reference external" href="https://github.com/webgme/webgme-cli">webgme-cli</a>     for generating the boiler-plate code for a python-plugin.</p>
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.META">
+<code class="descname">META</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.META" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary from name of meta-node to node dict.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.active_node">
+<code class="descname">active_node</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.active_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The active-node of the current invocation (dict)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.active_selection">
+<code class="descname">active_selection</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.active_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>The active-selection nodes of the current invocation (list of dict)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.add_artifact">
+<code class="descname">add_artifact</code><span class="sig-paren">(</span><em>name</em>, <em>files</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.add_artifact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.add_artifact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds multiple files to the blob storage and bundles them as an artifact of which the hash is added to the        plugin-result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) – name of the file bundle.</li>
+<li><strong>files</strong> (<em>dict</em>) – Keys are file names and values the content (as strings).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The metadata-hash (the “id”) of the uploaded artifact.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.add_file">
+<code class="descname">add_file</code><span class="sig-paren">(</span><em>name</em>, <em>content</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.add_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a file to the blob storage and adds it to the plugin-result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>str</em>) – The name the file should be uploaded as.</li>
+<li><strong>content</strong> (<em>str</em>) – The file content.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The metadata-hash (the “id”) of the uploaded file.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.branch_name">
+<code class="descname">branch_name</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.branch_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current branch (str or None)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.commit_hash">
+<code class="descname">commit_hash</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.commit_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>The current commit-hash (str)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.core">
+<code class="descname">core</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.core" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of webgme_bindings.Core</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.create_message">
+<code class="descname">create_message</code><span class="sig-paren">(</span><em>node</em>, <em>message</em>, <em>severity='info'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.create_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.create_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new message for the user and adds it to the result.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>node</strong> (<em>dict</em>) – The node related to the message.</li>
+<li><strong>message</strong> (<em>str</em>) – The feedback to the user.</li>
+<li><strong>severity</strong> (<em>str</em>) – Severity level of the message: ‘debug’, ‘info’ (default), ‘warning’, ‘error’.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Nothing is returned by the function.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.CoreIllegalArgumentError" title="webgme_bindings.exceptions.CoreIllegalArgumentError"><strong>CoreIllegalArgumentError</strong></a> – If some of the parameters don’t match the input criteria.</li>
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.CoreIllegalOperationError" title="webgme_bindings.exceptions.CoreIllegalOperationError"><strong>CoreIllegalOperationError</strong></a> – If the context of the operation is not allowed.</li>
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.CoreInternalError" title="webgme_bindings.exceptions.CoreInternalError"><strong>CoreInternalError</strong></a> – If some internal error took place inside the core layers.</li>
+<li><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.get_artifact">
+<code class="descname">get_artifact</code><span class="sig-paren">(</span><em>metadata_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_artifact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_artifact" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves all the files in the artifact from the blob storage.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metadata_hash</strong> (<em>str</em>) – the “id” of the artifact to retrieve.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Keys are file names, and values the file content (as strings).</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.get_current_config">
+<code class="descname">get_current_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_current_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_current_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the current configuration of the plugin that was set by the user and plugin manager.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A dictionary with the plugin config for the current execution.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.get_file">
+<code class="descname">get_file</code><span class="sig-paren">(</span><em>metadata_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the file from blob storage.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>metadata_hash</strong> (<em>str</em>) – the “id” of the file to retrieve.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The file content.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.gme_config">
+<code class="descname">gme_config</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.gme_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>A nested dictionary with <a class="reference external" href="https://github.com/webgme/webgme/tree/master/config">configuration parameters for webgme</a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.logger">
+<code class="descname">logger</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instance of logger (regular python logger)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.main">
+<code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main invocation point for a plugin. This must be implemented in the derived classes.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.namespace">
+<code class="descname">namespace</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>The namespace the plugin is running under (str)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.project">
+<code class="descname">project</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of webgme_bindings.Project</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.root_node">
+<code class="descname">root_node</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.root_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The root-node of the current invocation (dict)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="webgme_bindings.pluginbase.PluginBase.send_notification">
+<code class="descname">send_notification</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.send_notification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.send_notification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a notification back to the invoker of the plugin, can be used to notify about progress.        Message can either be a string or a dictionary with keys, ‘message’, ‘progress’, ‘severity’        and ‘toBranch’. If an object is passed ‘message’ must be provided - all other are optional.        ‘progress’ - Approximate progress (in %) of the plugin at time of sending.        ‘severity’ - Severity level (‘success’, ‘info’, ‘warn’, ‘error’)        ‘toBranch’ - If true, and the plugin is running on the server on a branch the notification will be        broadcast to all sockets in the branch room.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> (<em>str</em><em> or </em><em>dict</em>) – Message string or object containing message.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A dictionary with the plugin config for the current execution.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="webgme_bindings.pluginbase.PluginBase.util">
+<code class="descname">util</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.util" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of webgme_bindings.Util</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<p class="caption"><span class="caption-text">Classes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PluginBase</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project.html">Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webgme.html">WebGME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Welcome to webgme_bindings’s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="core.html"
+                        title="next chapter">Core</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/_static/pluginbase.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="core.html" title="Core"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to webgme_bindings’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Vanderbilt University, ISIS.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+    </div>
+  </body>
+</html>
