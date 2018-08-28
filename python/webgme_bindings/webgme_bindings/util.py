@@ -99,3 +99,28 @@ class Util(object):
         :rtype: bool
         """
         return node1['nodePath'] == node2['nodePath'] and node1['rootId'] == node2['rootId']
+
+    def traverse(self, node, visitor_fn):
+        """
+        Traverses the sub-tree starting from node and invokes visitor_fn with each encountered node (including
+        the passed in node).
+
+        :param node: The root-node of the subtree to traverse.
+        :type node: dict
+        :param visitor_fn: The function invoked at each encountered node.
+        :type visitor_fn: function
+        :returns: Nothing is returned by the function.
+        :rtype: None
+        :raises CoreIllegalArgumentError: If some of the parameters don't match the input criteria.
+        :raises CoreIllegalOperationError: If the context of the operation is not allowed.
+        :raises CoreInternalError: If some internal error took place inside the core layers.
+        """
+
+        core = self._webgme.core
+
+        def traverse_rec(sub_root_node):
+            visitor_fn(sub_root_node)
+            for child in core.load_children(sub_root_node):
+                traverse_rec(child)
+
+        traverse_rec(node)

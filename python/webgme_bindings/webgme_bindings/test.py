@@ -7,7 +7,7 @@ Then from <rootDir>/python/webgme_bindings:
 coverage run -m unittest discover -s <rootDir>/python/webgme_bindings/webgme_bindings -p test.py -t <rootDir>/python/webgme_bindings
 coverage html
 
-coverage run -m unittest discover -s C:/Users/patrik85/GIT/webgme-core-bindings/python/webgme_bindings/webgme_bindings -p test.py -t C:\Users\patrik85\GIT\webgme-core-bindings\python\webgme_bindings
+coverage run -m unittest discover -s C:/Users/patrik85/GIT/webgme-core-bindings/python/webgme_bindings/webgme_bindings -p test.py -t C:/Users/patrik85/GIT/webgme-core-bindings/python/webgme_bindings
 """
 
 import unittest
@@ -33,6 +33,10 @@ root_dir = os.path.join(dir_path, '..', '..', '..')
 my_env = os.environ.copy()
 my_env['NODE_ENV'] = 'test'
 COREZMQ_SERVER_FILE = os.path.join(root_dir, 'bin', 'corezmq_server.js')
+
+
+def node_dict_sort(n_dict):
+    return n_dict['nodePath']
 
 
 class ConnectedTestClass(unittest.TestCase):
@@ -104,7 +108,7 @@ class ProjectTests(ConnectedTestClass):
     def test_branch_related(self):
         init_branches = self.project.get_branches()
         self.assertEqual(len(init_branches.keys()), 1)
-        self.assertEqual(init_branches.keys()[0], 'master')
+        self.assertEqual(list(init_branches.keys())[0], 'master')
 
         branch_hash = self.project.get_branch_hash('master')
         self.assertEqual(init_branches['master'], branch_hash)
@@ -307,14 +311,14 @@ class CoreTests(ConnectedTestClass):
         self.assertEqual(len(children), len(child_paths))
         self.assertEqual(len(children), len(child_relids))
         self.assertEqual(len(children), len(tree_nodes) - 1)  # root included in tree
-        children.sort()
-        own_children.sort()
+        children.sort(key=node_dict_sort)
+        own_children.sort(key=node_dict_sort)
         child_paths.sort()
         own_child_paths.sort()
         child_relids.sort()
         own_child_relids.sort()
-        tree_nodes.sort()
-        own_tree_nodes.sort()
+        tree_nodes.sort(key=node_dict_sort)
+        own_tree_nodes.sort(key=node_dict_sort)
         self.assertEqual(children, own_children)
         self.assertEqual(own_child_paths, child_paths)
         self.assertEqual(own_child_relids, child_relids)
@@ -512,18 +516,18 @@ class CoreTests(ConnectedTestClass):
         all_meta_nodes = self.core.get_all_meta_nodes(self.root)
         meta_nodes_paths = [p, p2]
         meta_nodes_paths.sort()
-        self.assertEqual(len(all_meta_nodes.keys()), 3)
+        self.assertEqual(len(list(all_meta_nodes.keys())), 3)
         self.assertTrue(self.equal(self.core.get_meta_type(self.child_instance), self.child))
         self.assertTrue(self.equal(self.core.get_base_type(self.child_instance), self.child))
 
-        base_types = map(lambda b: self.core.get_path(b), self.core.get_base_types(self.child_instance))
+        base_types = list(map(lambda b: self.core.get_path(b), self.core.get_base_types(self.child_instance)))
         base_types.sort()
         self.assertEqual(base_types, meta_nodes_paths)
 
         # Containment
         self.core.set_child_meta(self.child, self.child2)
         child_meta = self.core.get_children_meta(self.child)
-        self.assertEqual(len(child_meta.keys()), 1)
+        self.assertEqual(len(list(child_meta.keys())), 1)
         self.assertEqual(child_meta[p2], {'max': -1, 'min': -1})
         self.assertTrue(self.core.is_valid_child_of(self.child2, self.child))
         self.assertEqual(self.core.get_valid_children_paths(self.child), child_meta.keys())
@@ -535,14 +539,14 @@ class CoreTests(ConnectedTestClass):
         valid_children = self.core.get_valid_children_meta_nodes({'node': self.child_instance})
 
         self.assertEqual(len(valid_children), 2)
-        valid_children = map(lambda c: self.core.get_path(c), valid_children)
+        valid_children = list(map(lambda c: self.core.get_path(c), valid_children))
         valid_children.sort()
         self.assertEqual(valid_children, meta_nodes_paths)
 
         self.core.set_children_meta_limits(self.child, 1, 2)
         child_meta = self.core.get_children_meta(self.child)
 
-        self.assertEqual(len(child_meta.keys()), 3)
+        self.assertEqual(len(list(child_meta.keys())), 3)
         self.assertEqual(child_meta[p2], {'max': -1, 'min': -1})
         self.assertEqual(child_meta['min'], 1)
         self.assertEqual(child_meta['max'], 2)
@@ -728,15 +732,15 @@ class UtilTests(ConnectedTestClass):
 
     def test_gme_config(self):
         gme_conf = self.util.gme_config
-        self.assertTrue(gme_conf['debug'] == False)
+        self.assertFalse(gme_conf['debug'])
         gme_conf2 = self.util.gme_config
         self.assertTrue(gme_conf is gme_conf2)  # Referencing the same object
 
     def test_retrieving_meta_map(self):
         META = self.util.META(self.root)
         self.assertTrue(len(META.keys()), 1)
-        self.assertEqual(META.keys()[0], 'FCO')
-        self.assertEqual(self.core.get_path(META[META.keys()[0]]), self.core.get_path(self.fco))
+        self.assertEqual(list(META.keys())[0], 'FCO')
+        self.assertEqual(self.core.get_path(META[list(META.keys())[0]]), self.core.get_path(self.fco))
 
     def test_error_handling_at_retrieving_meta_map_with_none_existing_nsp(self):
         self.assertRaises(JSError, self.util.META, self.root, 'doesNotExist')
@@ -775,6 +779,22 @@ class UtilTests(ConnectedTestClass):
         self.util.unload_root(self.fco)  # any node can be passed
         self.assertRaises(JSError, self.core.get_attribute, self.fco, 'name')
 
+    def test_traverse_should_visit_all_nodes(self):
+        self.child = self.core.create_child(self.root, self.fco)
+        self.core.set_attribute(self.child, 'name', 'child')
+
+        self.child2 = self.core.create_child(self.root, self.fco)
+        self.core.set_attribute(self.child2, 'name', 'child2')
+        self.child_instance = self.core.create_child(self.root, self.child)
+        self.core.set_attribute(self.child_instance, 'name', 'child_instance')
+        names = []
+
+        def at_node(node):
+            names.append(self.core.get_attribute(node, 'name'))
+
+        self.util.traverse(self.root, at_node)
+        self.assertEqual(len(names), 5)
+
 
 class PluginExample(PluginBase):
     def main(self):
@@ -810,7 +830,7 @@ class PluginTests(ConnectedTestClass):
     def test_should_get_properties(self):
         META = self.plugin.META
         self.assertEqual(len(META.keys()), 1)
-        self.assertTrue(self.util.equal(META[META.keys()[0]], self.fco))
+        self.assertTrue(self.util.equal(META[list(META.keys())[0]], self.fco))
         config = self.plugin.gme_config
         self.assertFalse(config['debug'])
 
