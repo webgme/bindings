@@ -23,6 +23,8 @@ Make sure your webgme version is >= 2.30. (and the webgme-engine version >= 2.21
 npm install webgme-bindings --save
 ```
 
+(To install directly from github instead use: `npm install webgme/bindings#master --save`.)
+
 ### Setting up Python
 The python api is confirmed to work both with both `2.7` and `3.x`. The only third part dependency is
 [pyzmq](https://github.com/zeromq/pyzmq) which should work [down to 2.5](https://pyzmq.readthedocs.io/en/latest/pyversions.html).
