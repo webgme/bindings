@@ -45,7 +45,7 @@ Note that in the Python API strings are documented as `str` even though in pytho
 3. `pip install -e .`
 
 
-### Generating a python plugin
+## Generating a python plugin
 From the root of your repository generate a new plugin with (replacing `MyPythonPlugin` with something more suitable):
 ```
 webgme new plugin MyPythonPlugin --language Python
@@ -64,7 +64,7 @@ In your `./config/config.default.js` add the following line (right before the `m
 config.plugin.allowServerExecution = true;
 ```
 
-##### Debugging the plugin
+#### Debugging the plugin
 Note that all of these commands should run from the root of your repository:
 1. Running the JS plugin from command-line:
 ```
@@ -83,10 +83,10 @@ Listing details about options for the corezmq_server.js (called from `run_debug.
 node node_modules/webgme-bindings/bin/corezmq_server.js --help
 ```
 
-### Architectural Overview
+## Architectural Overview
 ![Bindings](images/PythonBindings.png "Architectural overview")
 
-### Why ZeroMQ?
+## Why ZeroMQ?
 It is:
 - cross-platform and runs on windows and unix-like systems.
 - providing [bindings](http://zeromq.org/bindings:_start) in a wide range of languages.
