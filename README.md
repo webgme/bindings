@@ -84,6 +84,8 @@ node node_modules/webgme-bindings/bin/corezmq_server.js --help
 ```
 
 
+![Bindings](images/PythonBindings.svg "Architectual overview")
+
 ### Why ZeroMQ?
 It is:
 - cross-platform and runs on windows and unix-like systems.
