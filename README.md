@@ -83,8 +83,8 @@ Listing details about options for the corezmq_server.js (called from `run_debug.
 node node_modules/webgme-bindings/bin/corezmq_server.js --help
 ```
 
-
-![Bindings](images/PythonBindings.svg "Architectual overview")
+### Architectural Overview
+![Bindings](images/PythonBindings.png "Architectural overview")
 
 ### Why ZeroMQ?
 It is:
