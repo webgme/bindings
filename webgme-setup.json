@@ -5,9 +5,17 @@
         "src": "src/plugins/PythonBindings",
         "test": "test/plugins/PythonBindings"
       }
+    },
+    "routers": {
+      "BindingsDocs": {
+        "src": "src/routers/BindingsDocs",
+        "test": "test/routers/BindingsDocs",
+        "mount": "bindings-docs"
+      }
     }
   },
   "dependencies": {
-    "plugins": {}
+    "plugins": {},
+    "routers": {}
   }
 }

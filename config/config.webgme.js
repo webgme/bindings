@@ -11,13 +11,17 @@ config.plugin.basePaths.push(__dirname + '/../src/plugins');
 
 
 
-
+config.rest.components['BindingsDocs'] = {
+  src: __dirname + '/../src/routers/BindingsDocs/BindingsDocs.js',
+  mount: 'bindings-docs',
+  options: {}
+};
 
 // Visualizer descriptors
 
 // Add requirejs paths
 config.requirejsPaths = {
-  'webgme-core-bindings': './src/common'
+  'webgme-bindings': './src/common'
 };
 
 
