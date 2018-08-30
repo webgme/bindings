@@ -47,7 +47,7 @@ Note that in the Python API strings are documented as `str` even though in pytho
 
 #### Installing from https://pypi.org/
 
-```pip install webgme_bindings```
+```pip install webgme-bindings```
 
 #### Installing from source
 1. ```git clone https://github.com/webgme/bindings.git```
