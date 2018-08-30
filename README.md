@@ -1,3 +1,5 @@
+
+
 # WebGME-Bindings
 This module provides bindings to the Core, Project and certain extent
 PluginBase APIs of WebGME. This allows developers to implement plugin logic
@@ -25,6 +27,14 @@ npm install webgme-bindings --save
 
 (To install directly from github instead use: `npm install webgme/bindings#master --save`.)
 
+To add a router to your deployment that serves the documentation invoke:
+```
+webgme import router BindingsDocs webgme-bindings
+```
+
+Once your webgme-server is up and running the documentation will be available at `<host>/bindings-docs/`,
+e.g. [http://localhost:8888/bindings-docs/](http://localhost:8888/bindings-docs/)
+
 ### Setting up Python
 The python api is confirmed to work both with both `2.7` and `3.x`. The only third part dependency is
 [pyzmq](https://github.com/zeromq/pyzmq) which should work [down to 2.5](https://pyzmq.readthedocs.io/en/latest/pyversions.html).
@@ -35,11 +45,11 @@ Note that in the Python API strings are documented as `str` even though in pytho
 1. Install python and make sure it's added to PATH (typing `python` in a shell/cmd should start the python REPL).
 2. Install [pip](https://pypi.org/project/pip/) (with the later versions of python 3 it comes packaged with some installers).
 
-##### Installing from https://pypi.org/
+#### Installing from https://pypi.org/
 
 ```pip install webgme_bindings```
 
-##### Installing from source
+#### Installing from source
 1. ```git clone https://github.com/webgme/bindings.git```
 2. `cd bindings/python/webgme_bindings`
 3. `pip install -e .`
