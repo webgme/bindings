@@ -69,7 +69,11 @@ class WebGME(object):
             self._socket.send(json.dumps(payload))
 
     def handle_response(self):
-        raw_res = self._socket.recv()
+        if is_python_3:
+            raw_res = self._socket.recv_string()
+        else:
+            raw_res = self._socket.recv()
+
         self.logger.debug('handle_response: {0}'.format(raw_res))
         res = json.loads(raw_res)
 
