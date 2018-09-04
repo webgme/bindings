@@ -39,8 +39,8 @@ class WebGME(object):
                 handler.setFormatter(formatter)
                 self.logger.addHandler(handler)
 
-            self.logger.warn('No logger passed to WebGME - created console logger at DEBUG level.')
-            self.logger.warn('Pass a configured logger to the constructor to suppress DEBUG messages.')
+            self.logger.warning('No logger passed to WebGME - created console logger at DEBUG level.')
+            self.logger.warning('Pass a configured logger to the constructor to suppress DEBUG messages.')
 
         self._socket = zmq.Context().socket(zmq.REQ)
         if address is None:
