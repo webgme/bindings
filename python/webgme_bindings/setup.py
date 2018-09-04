@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="webgme_bindings",
-    version="1.0.0",
+    version="1.0.1",
     license='MIT',
     author="Patrik Meijer",
     author_email="webgme@vanderbilt.edu",
