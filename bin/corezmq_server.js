@@ -162,7 +162,7 @@ if (require.main === module) {
         .option('-s, --serverUrl [string]', 'If specified the project will connect to the database via ' +
             'a running webgme server, example "http://localhost:8888". Note that if a different user than the ' +
             'guest is used the password needs to be added after a semicolon, e.g. "-u someUser:pass".')
-        .option('-m, --metadataPath', 'Optional file-path to the metadata of a plugin.')
+        .option('-m, --pluginMetadataPath', 'Optional file-path to the metadata of a plugin.')
         .option('-j, --pluginConfigPath [string]',
             'Path to json file with plugin options that should be overwritten.', '')
         .on('--help', function () {
