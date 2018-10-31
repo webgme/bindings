@@ -10,5 +10,14 @@
   "disableServerSideExecution": false,
   "disableBrowserSideExecution": true,
   "writeAccessRequired": false,
-  "configStructure": []
+  "configStructure": [
+    {
+      "name": "carnivore",
+      "displayName": "Carnivore",
+      "description": "Does the animal eat other animals?",
+      "value": false,
+      "valueType": "boolean",
+      "readOnly": false
+    }
+  ]
 }

@@ -19,6 +19,8 @@ class PythonBindings(PluginBase):
         root_node = self.root_node
         active_node = self.active_node
 
+        logger.info(self.get_current_config())
+
         name = core.get_attribute(active_node, 'name')
 
         logger.info('ActiveNode at "{0}" has name {1}'.format(core.get_path(active_node), name))
