@@ -6,7 +6,7 @@ PluginBase APIs of WebGME. This allows developers to implement plugin logic
 without using JavaScript. The implementation is a simple client-server
 approach using [ZeroMQ](http://zeromq.org/).
 
-- Currently only Python is supported ([info on how to add another language](./srcripts/README.md))
+- Currently only Python is supported ([info on how to add another language](./scripts/README.md))
 - A non-native plugin still needs a "wrapping" plugin in JavaScript that starts the ZeroMQ-server
 and invokes the non-native plugin. For Python - the boiler-plate code (including a debug entry) can be
 generated from `webgme-cli` with the command:
