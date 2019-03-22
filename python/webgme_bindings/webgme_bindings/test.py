@@ -338,7 +338,8 @@ class CoreTests(ConnectedTestClass):
 
         self.assertEqual(len(self.core.get_children_hashes(self.root).keys()), 4)
         self.assertTrue(self.equal(self.core.get_common_parent(children), self.root))
-        self.assertEqual(self.core.get_common_parent([self.root]), self.root)
+        self.assertEqual(self.core.get_common_parent([children[0]]), self.root)
+        self.assertEqual(self.core.get_common_parent([self.root]), None)
 
         self.assertTrue(self.core.is_valid_new_parent(self.child2, self.child))
         self.assertFalse(self.core.is_valid_new_parent(self.child2, self.fco))
@@ -377,7 +378,7 @@ class CoreTests(ConnectedTestClass):
         fco_instances = self.core.load_instances(self.fco)
         self.assertTrue(self.equal(self.core.get_common_base(fco_instances), self.fco))
         self.assertEqual(self.core.get_common_base([self.root, self.fco]), None)
-        self.assertEqual(self.core.get_common_base([self.fco]), self.fco)
+        self.assertEqual(self.core.get_common_base([self.fco]), None)
 
         base_types = self.core.get_base_types(self.child)
         self.assertEqual(len(base_types), 1)
