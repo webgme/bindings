@@ -1,6 +1,9 @@
 The module is defined inside webgme_bindings. The README.md inside the
-directory is the README.md that is published on [pypi.org](https://pypi.org/project/webgme-bindings/)
-- do not add dev documentation there! Add it here instead... 
+directory is the README.md that is published on [pypi.org](https://pypi.org/project/webgme-bindings/).
+
+## Install module from source
+1. `cd webgme_bindings`
+2. `pip install -e .`
 
 ## Tests
 The tests are defined in [./test.py](./webgme_bindings/webgme_bindings/test.py) and
