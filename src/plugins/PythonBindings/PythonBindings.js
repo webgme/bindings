@@ -62,6 +62,9 @@ define([
         const cp = require('child_process');
         const logger = this.logger;
 
+        // due to the limited options on the script return values, we need this hack
+        this.result.setSuccess(null);
+
         const callScript = (program, scriptPath, port) => {
             let deferred = Q.defer(),
                 options = {},
@@ -88,20 +91,29 @@ define([
 
             childProc.on('close', (code) => {
                 if (code > 0) {
+                    // This means an execution error or crash, so we are failing the plugin
                     deferred.reject(new Error(`${program} ${args.join(' ')} exited with code ${code}.`));
+                    this.result.setSuccess(false);
                 } else {
+                    if(this.result.getSuccess() === null) {
+                        //the result have not been set inside the python, but it suceeded, so we go with the true value
+                        this.result.setSuccess(true);
+                    }
                     deferred.resolve();
                 }
             });
 
             childProc.on('error', (err) => {
+                // This is a hard execution error, like the child process cannot be instantiated...
+                logger.error(err);
+                this.result.setSuccess(false);
                 deferred.reject(err);
             });
 
             return deferred.promise;
         };
 
-        const corezmq = new CoreZMQ(this.project, this.core, this.logger, {port: START_PORT, plugin: this});
+        const corezmq = new CoreZMQ(this.project, this.core, logger, {port: START_PORT, plugin: this});
         corezmq.startServer()
             .then((port) => {
                 logger.info(`zmq-server listening at port ${port}`);
@@ -111,12 +123,10 @@ define([
                 return corezmq.stopServer();
             })
             .then(() => {
-                this.result.setSuccess(true);
                 callback(null, this.result);
             })
             .catch((err) => {
-                this.logger.error(err.stack);
-                // Result success is false at invocation.
+                logger.error(err.stack);
                 corezmq.stopServer()
                     .finally(() => {
                         callback(err, this.result);
