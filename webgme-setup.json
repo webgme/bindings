@@ -4,6 +4,10 @@
       "PythonBindings": {
         "src": "src/plugins/PythonBindings",
         "test": "test/plugins/PythonBindings"
+      },
+      "PythonBindingsError": {
+        "src": "src/plugins/PythonBindingsError",
+        "test": "test/plugins/PythonBindingsError"
       }
     },
     "routers": {
@@ -12,10 +16,20 @@
         "test": "test/routers/BindingsDocs",
         "mount": "bindings-docs"
       }
-    }
+    },
+    "addons": {},
+    "decorators": {},
+    "layouts": {},
+    "seeds": {},
+    "visualizers": {}
   },
   "dependencies": {
     "plugins": {},
-    "routers": {}
+    "routers": {},
+    "addons": {},
+    "decorators": {},
+    "layouts": {},
+    "seeds": {},
+    "visualizers": {}
   }
 }

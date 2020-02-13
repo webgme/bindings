@@ -767,6 +767,20 @@ function CoreZMQ(project, core, mainLogger, opts) {
                 } catch (e) {
                     return Q.reject(e);
                 }
+            case 'resultSetSuccess':
+                try {
+                    plugin.result.setSuccess(req.args[0]);
+                    return Q(null);
+                } catch(e) {
+                    return Q.reject(e);
+                }
+            case 'resultSetError':
+                try {
+                    plugin.result.setError(req.args[0]);
+                    return Q(null);
+                } catch(e) {
+                    return Q.reject(e);
+                }
             default:
                 return Q.reject(new Error(`Unexpected request name ${req.name} of type [${req.type}]`));
         }

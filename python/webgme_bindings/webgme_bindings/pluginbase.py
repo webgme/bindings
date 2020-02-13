@@ -189,3 +189,28 @@ class PluginBase(object):
         :raises JSError: The result of the execution.
         """
         return self._send({'name': 'sendNotification', 'args': [message]})
+
+    def result_set_success(self, success):
+        """
+        Sets the the result value of the execution of the plugin. In python, if the plugin exits with 0,\
+        the value will be true.
+        
+        :param success: The value to be set for the success of the plugin.
+        :type success: bool
+        :returns: Nothing is returned by the function.
+        :rtype: None
+        """
+        return self._send({'name':'resultSetSuccess', 'args':[success]})
+
+    def result_set_error(self, message):
+        """
+        Sets the error reason for the failure of the plugin. Should be used together with result_set_success\
+        as in case of successfull execution, this message is ignored. Also, only the first message will be visible\
+        for the user.
+        
+        :param message: Textual description of the cause of the failure.
+        :type message: str
+        :returns: Nothing is returned by the function.
+        :rtype: None
+        """
+        return self._send({'name':'resultSetError', 'args':[message]})

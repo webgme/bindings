@@ -1,18 +1,19 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>webgme_bindings.pluginbase &#8212; webgme_bindings 1.0.0 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
   </head><body>
@@ -36,8 +37,8 @@
           <div class="body" role="main">
             
   <h1>Source code for webgme_bindings.pluginbase</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.webgme</span> <span class="k">import</span> <span class="n">WebGME</span>
-<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="k">import</span> <span class="n">JSError</span><span class="p">,</span> <span class="n">CoreIllegalArgumentError</span><span class="p">,</span> <span class="n">CoreIllegalOperationError</span><span class="p">,</span> <span class="n">CoreInternalError</span>
+<span></span><span class="kn">from</span> <span class="nn">.webgme</span> <span class="kn">import</span> <span class="n">WebGME</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">JSError</span><span class="p">,</span> <span class="n">CoreIllegalArgumentError</span><span class="p">,</span> <span class="n">CoreIllegalOperationError</span><span class="p">,</span> <span class="n">CoreInternalError</span>
 
 
 <div class="viewcode-block" id="PluginBase"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase">[docs]</a><span class="k">class</span> <span class="nc">PluginBase</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -45,7 +46,7 @@
 <span class="sd">    This is the base-class for webgme-plugins in Python. Use `webgme-cli &lt;https://github.com/webgme/webgme-cli&gt;`_ \</span>
 <span class="sd">    for generating the boiler-plate code for a python-plugin.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">webgme</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">,</span> <span class="n">branch_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">active_node</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">active_selection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nsp</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">webgme</span><span class="p">,</span> <span class="n">commit_hash</span><span class="p">,</span> <span class="n">branch_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">active_node</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">active_selection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nsp</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :param webgme: An instance of an already connected WebGME class</span>
@@ -226,7 +227,32 @@
 <span class="sd">        :rtype: dict</span>
 <span class="sd">        :raises JSError: The result of the execution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;sendNotification&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">message</span><span class="p">]})</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;sendNotification&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">message</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.result_set_success"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.result_set_success">[docs]</a>    <span class="k">def</span> <span class="nf">result_set_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">success</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the the result value of the execution of the plugin. In python, if the plugin exits with 0,\</span>
+<span class="sd">        the value will be true.</span>
+<span class="sd">        </span>
+<span class="sd">        :param success: The value to be set for the success of the plugin.</span>
+<span class="sd">        :type success: bool</span>
+<span class="sd">        :returns: Nothing is returned by the function.</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;resultSetSuccess&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:[</span><span class="n">success</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.result_set_error"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.result_set_error">[docs]</a>    <span class="k">def</span> <span class="nf">result_set_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the error reason for the failure of the plugin. Should be used together with result_set_success\</span>
+<span class="sd">        as in case of successfull execution, this message is ignored. Also, only the first message will be visible\</span>
+<span class="sd">        for the user.</span>
+<span class="sd">        </span>
+<span class="sd">        :param message: Textual description of the cause of the failure.</span>
+<span class="sd">        :type message: str</span>
+<span class="sd">        :returns: Nothing is returned by the function.</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;resultSetError&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:[</span><span class="n">message</span><span class="p">]})</span></div></div>
 </pre></div>
 
           </div>
@@ -234,7 +260,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h3><a href="../../index.html">Table Of Contents</a></h3>
+<h3><a href="../../index.html">Table of Contents</a></h3>
 <p class="caption"><span class="caption-text">Classes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../_static/pluginbase.html">PluginBase</a></li>
@@ -246,17 +272,15 @@
 </ul>
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -276,7 +300,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Vanderbilt University, ISIS.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.
     </div>
   </body>
 </html>

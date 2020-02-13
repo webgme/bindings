@@ -1,6 +1,6 @@
 /* eslint-env mocha, node */
 
-describe('corezmq-server', function () {
+describe.skip('corezmq-server', function () {
     const testFixture = require('../globals'),
         corezmq_server = require('../../bin/corezmq_server'),
         cp = require('child_process'),
