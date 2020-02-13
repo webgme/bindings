@@ -53,5 +53,3 @@ class PythonBindings(PluginBase):
 
         self.create_message(root_node, 'Hello')
         self.add_file('f.txt', 'Hello')
-        self.result_set_success(false)
-        self.result_set_error('Test failing')
