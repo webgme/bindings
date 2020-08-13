@@ -767,6 +767,7 @@ function CoreZMQ(project, core, mainLogger, opts) {
                         // -> addArtifact
                     }else{
                         const is_bytes = req.args[2] // boolean
+                        let data;
                         if (is_bytes) {
                             data = Buffer.from(req.args[1], 'base64')
                         }else{
