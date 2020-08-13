@@ -761,6 +761,22 @@ function CoreZMQ(project, core, mainLogger, opts) {
                     return Q.reject(e);
                 }
             case 'addFile':
+                try {
+                    // compaitable with add_file(name, content)
+                    if (req.args.length == 2) {
+                        // -> addArtifact
+                    }else{
+                        is_bytes = req.args[2] // boolean
+                        if (is_bytes) {
+                            data = Buffer.from(req.args[1], 'base64')
+                        }else{
+                            data = req.args[1]
+                        }
+                        return plugin[req.name](req.args[0], data);
+                    }
+                } catch (e) {
+                    return Q.reject(e);
+                }
             case 'addArtifact':
                 try {
                     return plugin[req.name](req.args[0], req.args[1]);

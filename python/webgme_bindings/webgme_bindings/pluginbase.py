@@ -1,3 +1,5 @@
+import base64
+
 from .webgme import WebGME
 from .exceptions import JSError, CoreIllegalArgumentError, CoreIllegalOperationError, CoreInternalError
 
@@ -112,12 +114,17 @@ class PluginBase(object):
         :param name: The name the file should be uploaded as.
         :type name: str
         :param content: The file content.
-        :type content: str
+        :type content: Union[str, bytes]
         :returns: The metadata-hash (the "id") of the uploaded file.
         :rtype: str
         :raises JSError: The result of the execution.
         """
-        return self._send({'name': 'addFile', 'args': [name, content]})
+        if isinstance(content, bytes):
+            content = base64.b64encode(content).decode("UTF-8")
+            is_bytes = True
+        else:
+            is_bytes = False
+        return self._send({'name': 'addFile', 'args': [name, content, is_bytes]})
 
     def create_message(self, node, message, severity='info'):
         """
