@@ -93,6 +93,18 @@ Listing details about options for the corezmq_server.js (called from `run_debug.
 node node_modules/webgme-bindings/bin/corezmq_server.js --help
 ```
 
+### Working with PyCharm IDE
+
+If working with the Pycharm IDE make sure to follow these points:
+1. Execute pycharm from the commandline, so that it properly captures the
+nodejs PATH settings from the terminal's ~/.bashrc file(if using nvm for managing node)
+2. Set the working-dir from the run/debug configuration for the project to point to the project's root.
+![Pycharm Setting1](images/pycharm_setting_config.png "PyCharm Config")
+3. Set the project name and other associated variables in the `run_debug.py` file
+![Pycharm Setting](images/pycharm_setting_rundebug.png "PyCharm Debug Config")
+
+
+
 ## Architectural Overview
 ![Bindings](images/PythonBindings.png "Architectural overview")
 
