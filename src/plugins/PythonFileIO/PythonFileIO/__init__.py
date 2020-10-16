@@ -25,15 +25,21 @@ class PythonFileIO(PluginBase):
 
         name = core.get_attribute(active_node, 'name')
 
-        logger.error(os.getcwd())
         binary_file = open('./src/plugins/PythonFileIO/PythonFileIO/heart.png','br')
         binary_content = binary_file.read()
 
         bin_hash = self.add_file('heart.png', binary_content)
         retrieved_content = self.get_bin_file(bin_hash)
-
         if binary_content != retrieved_content:
+            self.logger.error('issue in simple binary')
             self.result_set_success(False)
             self.result_set_error('simple binary content mismatch')
+
+        arti_hash = self.add_artifact('myArti', {'text.txt':'just because', 'heart.png':binary_content})
+        retrieved_content_from_arti = self.get_bin_file(arti_hash,'heart.png')
+        if binary_content != retrieved_content_from_arti:
+            self.logger.error('issue in complex blob')
+            self.result_set_success(False)
+            self.result_set_error('embedded binary content mismatch')
 
         

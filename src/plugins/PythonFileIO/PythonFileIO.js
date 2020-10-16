@@ -62,7 +62,7 @@ define([
      * @param {function(null|Error|string, plugin.PluginResult)} callback - the result callback
      */
     PythonFileIO.prototype.main = function (callback) {
-        const CoreZMQ = require('webgme-bindings').CoreZMQ;
+        const CoreZMQ = require(path.join(process.cwd(), 'index')).CoreZMQ;
         const cp = require('child_process');
         const logger = this.logger;
 

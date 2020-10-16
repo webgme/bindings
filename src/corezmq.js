@@ -762,9 +762,9 @@ function CoreZMQ(project, core, mainLogger, opts) {
                 }
             case 'getBinFile':
                 try {
-                    plugin[req.name](req.args[0], null, req.args[1])
+                    return plugin[req.name](req.args[0], req.args[1], null)
                     .then(bufferContent => {
-                        return Q.resolve(bufferContent.toString('utf8'));
+                        return Q(bufferContent.toString());
                     })
                     .catch(Q.reject);
                 } catch (e) {
@@ -775,7 +775,7 @@ function CoreZMQ(project, core, mainLogger, opts) {
                     const is_bytes = req.args[2];
                     let data;
                     if (is_bytes) {
-                        data = Buffer.from(req.args[1], 'base64')
+                        data = Buffer.from(req.args[1])
                     }else{
                         data = req.args[1]
                     }
@@ -787,8 +787,8 @@ function CoreZMQ(project, core, mainLogger, opts) {
                 try {
                     const files = {};
                     for (const [key, value] of Object.entries(req.args[1])) {
-                        if (value.bytes) {
-                            files[key] = Buffer.from(value.content, 'base64');
+                        if (value.binary) {
+                            files[key] = Buffer.from(value.content);
                         } else {
                             files[key] = value.content;
                         }

@@ -112,7 +112,7 @@ class PluginBase(object):
             if isinstance(content, bytes):
                 content = base64.b64encode(content).decode("UTF-8")
                 is_bytes = True
-            extendedDict[key] = {content: content, bytes: is_bytes}
+            extendedDict[key] = {'content': content, 'binary': is_bytes}
 
         return self._send({'name': 'addArtifact', 'args': [name, extendedDict]})
 
@@ -191,7 +191,7 @@ class PluginBase(object):
         :raises JSError: The result of the execution.
         """
         content_as_string = self._send({'name': 'getBinFile', 'args': [metadata_hash, sub_path]})
-        return base64.decodebytes(content_as_string.decode('UTF-8'))
+        return base64.decodebytes(content_as_string.encode('UTF-8'))
 
     def get_current_config(self):
         """
