@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Util &#8212; webgme_bindings 1.0.0 documentation</title>
     <link rel="stylesheet" href="classic.css" type="text/css" />
     <link rel="stylesheet" href="pygments.css" type="text/css" />
@@ -34,7 +35,8 @@
         <li class="right" >
           <a href="project.html" title="Project"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Util</a></li> 
       </ul>
     </div>  
 
@@ -45,14 +47,14 @@
             
   <div class="section" id="module-webgme_bindings.util">
 <span id="util"></span><h1>Util<a class="headerlink" href="#module-webgme_bindings.util" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="webgme_bindings.util.Util">
-<em class="property">class </em><code class="sig-prename descclassname">webgme_bindings.util.</code><code class="sig-name descname">Util</code><span class="sig-paren">(</span><em class="sig-param">webgme</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webgme_bindings.util.</code><code class="sig-name descname">Util</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">webgme</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Contains useful utility functions outside of the core and project API.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.util.Util.META">
-<code class="sig-name descname">META</code><span class="sig-paren">(</span><em class="sig-param">node</em>, <em class="sig-param">namespace=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.META"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.META" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">META</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">namespace</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.META"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.META" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gathers the and returns the meta nodes in the core tree associated with the node.        If a namespace is supplied, only meta-nodes part of the corresponding library are returned.</p>
 <p>Note that the names are fully-qualified (relative the provided namespace).</p>
 <dl class="field-list simple">
@@ -77,9 +79,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.util.Util.equal">
-<code class="sig-name descname">equal</code><span class="sig-paren">(</span><em class="sig-param">node1</em>, <em class="sig-param">node2</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.equal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.equal" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">equal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node1</span></em>, <em class="sig-param"><span class="n">node2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.equal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.equal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if two node dicts represent the same node.
 :param node1:
 :type node1: dict
@@ -89,15 +91,15 @@
 :rtype: bool</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.util.Util.gme_config">
 <em class="property">property </em><code class="sig-name descname">gme_config</code><a class="headerlink" href="#webgme_bindings.util.Util.gme_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>A nested dictionary with <a class="reference external" href="https://github.com/webgme/webgme/tree/master/config">configuration parameters for webgme</a>.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.util.Util.save">
-<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param">root_node</em>, <em class="sig-param">commit_hash</em>, <em class="sig-param">branch_name=None</em>, <em class="sig-param">msg='Save initiated from python api.'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.save" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root_node</span></em>, <em class="sig-param"><span class="n">commit_hash</span></em>, <em class="sig-param"><span class="n">branch_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">msg</span><span class="o">=</span><span class="default_value">'Save initiated from python api.'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Persists the core tree from root node and makes a commit to the database.        This method is short-hand for (but does not send all persisted objects over zeromq):</p>
 <p><code class="code docutils literal notranslate"><span class="pre">persisted</span> <span class="pre">=</span> <span class="pre">webgme.core.persist(root_node)</span></code></p>
 <p><code class="code docutils literal notranslate"><span class="pre">webgme.project.make_commit(branch_name,</span> <span class="pre">[commit_hash],</span> <span class="pre">persisted['rootHash'],</span> <span class="pre">persisted['objects'],</span> <span class="pre">msg)</span></code></p>
@@ -125,9 +127,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.util.Util.traverse">
-<code class="sig-name descname">traverse</code><span class="sig-paren">(</span><em class="sig-param">node</em>, <em class="sig-param">visitor_fn</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.traverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.traverse" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">traverse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">visitor_fn</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.traverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.traverse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Traverses the sub-tree starting from node and invokes visitor_fn with each encountered node (including
 the passed in node).</p>
 <dl class="field-list simple">
@@ -153,9 +155,9 @@ the passed in node).</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.util.Util.unload_root">
-<code class="sig-name descname">unload_root</code><span class="sig-paren">(</span><em class="sig-param">node</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.unload_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.unload_root" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">unload_root</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/util.html#Util.unload_root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.util.Util.unload_root" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes the reference to the root node associated with the node inside the corezmq.js module allowing        the tree to be garbage collected. This should typically not be needed as the typical usage of        the bindings is to load and work with one (or two roots) and then terminate the corezmq.js server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -178,6 +180,7 @@ the passed in node).</p>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -236,12 +239,13 @@ the passed in node).</p>
         <li class="right" >
           <a href="project.html" title="Project"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Util</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Vanderbilt University, ISIS.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

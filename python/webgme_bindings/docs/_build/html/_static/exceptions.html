@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exceptions &#8212; webgme_bindings 1.0.0 documentation</title>
     <link rel="stylesheet" href="classic.css" type="text/css" />
     <link rel="stylesheet" href="pygments.css" type="text/css" />
@@ -30,7 +31,8 @@
         <li class="right" >
           <a href="webgme.html" title="WebGME"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Exceptions</a></li> 
       </ul>
     </div>  
 
@@ -43,38 +45,38 @@
 <span id="exceptions"></span><h1>Exceptions<a class="headerlink" href="#module-webgme_bindings.exceptions" title="Permalink to this headline">¶</a></h1>
 <p>Collection of Exception-classes that correspond to exceptions thrown within the
 running nodejs process.</p>
-<dl class="exception">
+<dl class="py exception">
 <dt id="webgme_bindings.exceptions.CoreIllegalArgumentError">
-<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">CoreIllegalArgumentError</code><span class="sig-paren">(</span><em class="sig-param">err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreIllegalArgumentError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreIllegalArgumentError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">CoreIllegalArgumentError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">err_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreIllegalArgumentError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreIllegalArgumentError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><code class="xref py py-class docutils literal notranslate"><span class="pre">webgme_bindings.exceptions.JSError</span></code></a></p>
 <p>CoreIllegalArgumentError should be thrown if the type of the input parameters is not what it should be.</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="webgme_bindings.exceptions.CoreIllegalOperationError">
-<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">CoreIllegalOperationError</code><span class="sig-paren">(</span><em class="sig-param">err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreIllegalOperationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreIllegalOperationError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">CoreIllegalOperationError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">err_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreIllegalOperationError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreIllegalOperationError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><code class="xref py py-class docutils literal notranslate"><span class="pre">webgme_bindings.exceptions.JSError</span></code></a></p>
 <p>CoreIllegalOperationError should be thrown if the set of input parameters are correct but the request     or the operation do not apply to the current context. Here we followed the basic javascript principles     in terms that whenever the user try to access a ‘field’ of a ‘field’ that does not exist, we throw.     For example if someone tries to get the member attributes of an non-existing member.     Trying to modify read-only nodes are captured within this category.</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="webgme_bindings.exceptions.CoreInternalError">
-<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">CoreInternalError</code><span class="sig-paren">(</span><em class="sig-param">err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreInternalError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreInternalError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">CoreInternalError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">err_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#CoreInternalError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.CoreInternalError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><code class="xref py py-class docutils literal notranslate"><span class="pre">webgme_bindings.exceptions.JSError</span></code></a></p>
 <p>CoreInternalError should be thrown if some internal ASSERTION fails, it triggers some fault inside the core     and should typically be checked by the developer team, not the one who uses it.</p>
 </dd></dl>
 
-<dl class="exception">
+<dl class="py exception">
 <dt id="webgme_bindings.exceptions.JSError">
-<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">JSError</code><span class="sig-paren">(</span><em class="sig-param">err_data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#JSError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.JSError" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">webgme_bindings.exceptions.</code><code class="sig-name descname">JSError</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">err_data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#JSError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.JSError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Base class for exceptions/errors raised from coremq on the java-script side while handling a request.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.exceptions.JSError.get_js_stack">
 <code class="sig-name descname">get_js_stack</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#JSError.get_js_stack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.JSError.get_js_stack" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.exceptions.JSError.get_req">
 <code class="sig-name descname">get_req</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/exceptions.html#JSError.get_req"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.exceptions.JSError.get_req" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -84,6 +86,7 @@ running nodejs process.</p>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -136,12 +139,13 @@ running nodejs process.</p>
         <li class="right" >
           <a href="webgme.html" title="WebGME"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Exceptions</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Vanderbilt University, ISIS.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

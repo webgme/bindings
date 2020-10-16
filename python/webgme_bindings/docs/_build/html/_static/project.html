@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project &#8212; webgme_bindings 1.0.0 documentation</title>
     <link rel="stylesheet" href="classic.css" type="text/css" />
     <link rel="stylesheet" href="pygments.css" type="text/css" />
@@ -34,7 +35,8 @@
         <li class="right" >
           <a href="core.html" title="Core"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Project</a></li> 
       </ul>
     </div>  
 
@@ -49,20 +51,20 @@
 <p>%host%/docs/source/ProjectInterface.html</p>
 <p>for example:</p>
 <p><a class="reference external" href="https://editor.webgme.org/docs/source/ProjectInterface.html">https://editor.webgme.org/docs/source/ProjectInterface.html</a></p>
-<dl class="class">
+<dl class="py class">
 <dt id="webgme_bindings.project.Project">
-<em class="property">class </em><code class="sig-prename descclassname">webgme_bindings.project.</code><code class="sig-name descname">Project</code><span class="sig-paren">(</span><em class="sig-param">webgme</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webgme_bindings.project.</code><code class="sig-name descname">Project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">webgme</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class for accessing and making changes in a project repository.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.CONSTANTS">
 <em class="property">property </em><code class="sig-name descname">CONSTANTS</code><a class="headerlink" href="#webgme_bindings.project.Project.CONSTANTS" title="Permalink to this definition">¶</a></dt>
 <dd><p>A dictionary with the <a class="reference external" href="https://github.com/webgme/webgme-engine/blob/master/src/common/storage/constants.js">constants associated with the storage/project</a>.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.create_branch">
-<code class="sig-name descname">create_branch</code><span class="sig-paren">(</span><em class="sig-param">branch_name</em>, <em class="sig-param">new_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.create_branch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.create_branch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_branch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">branch_name</span></em>, <em class="sig-param"><span class="n">new_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.create_branch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.create_branch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new branch with head pointing to the provided commit hash.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -83,9 +85,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.create_tag">
-<code class="sig-name descname">create_tag</code><span class="sig-paren">(</span><em class="sig-param">tag_name</em>, <em class="sig-param">commit_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.create_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.create_tag" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_tag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag_name</span></em>, <em class="sig-param"><span class="n">commit_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.create_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.create_tag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new tag pointing to the provided commit hash.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -106,9 +108,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.delete_branch">
-<code class="sig-name descname">delete_branch</code><span class="sig-paren">(</span><em class="sig-param">branch_name</em>, <em class="sig-param">old_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.delete_branch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.delete_branch" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_branch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">branch_name</span></em>, <em class="sig-param"><span class="n">old_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.delete_branch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.delete_branch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes the branch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -129,9 +131,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.delete_tag">
-<code class="sig-name descname">delete_tag</code><span class="sig-paren">(</span><em class="sig-param">tag_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.delete_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.delete_tag" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_tag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.delete_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.delete_tag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Deletes the given tag.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -149,9 +151,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_branch_hash">
-<code class="sig-name descname">get_branch_hash</code><span class="sig-paren">(</span><em class="sig-param">branch_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_branch_hash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_branch_hash" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_branch_hash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">branch_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_branch_hash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_branch_hash" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the commit hash for the head of the branch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -169,7 +171,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_branches">
 <code class="sig-name descname">get_branches</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_branches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_branches" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves all branches and their current heads within the project.</p>
@@ -186,9 +188,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_commit_object">
-<code class="sig-name descname">get_commit_object</code><span class="sig-paren">(</span><em class="sig-param">branch_name_or_commit_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_commit_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_commit_object" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_commit_object</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">branch_name_or_commit_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_commit_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_commit_object" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the commit-object at the provided branch or commit-hash.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -206,9 +208,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_commits">
-<code class="sig-name descname">get_commits</code><span class="sig-paren">(</span><em class="sig-param">before</em>, <em class="sig-param">number</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_commits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_commits" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_commits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">before</span></em>, <em class="sig-param"><span class="n">number</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_commits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_commits" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves and array of the latest (sorted by timestamp) commits for the project.        If timestamp is given it will get &lt;b&gt;number&lt;/b&gt; of commits strictly before &lt;b&gt;before&lt;/b&gt;.        If commit hash is specified that commit will be included too.        &lt;br&gt; N.B. due to slight time differences on different machines, ancestors may be returned before        their descendants. Unless looking for ‘headless’ commits ‘getHistory’ is the preferred method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -229,9 +231,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_common_ancestor_commit">
-<code class="sig-name descname">get_common_ancestor_commit</code><span class="sig-paren">(</span><em class="sig-param">commit_a</em>, <em class="sig-param">commit_b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_common_ancestor_commit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_common_ancestor_commit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_common_ancestor_commit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">commit_a</span></em>, <em class="sig-param"><span class="n">commit_b</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_common_ancestor_commit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_common_ancestor_commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the common ancestor of two commits. If no ancestor exists it will result in an error.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -252,9 +254,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_history">
-<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param">start</em>, <em class="sig-param">number</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_history" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">number</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves an array of commits starting from a branch(es) and/or commitHash(es).        &lt;br&gt; The result is ordered by the rules (applied in order)        &lt;br&gt; 1. Descendants are always returned before their ancestors.        &lt;br&gt; 2. By their timestamp.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -275,7 +277,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_project_info">
 <code class="sig-name descname">get_project_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_project_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_project_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the metadata of the project.</p>
@@ -292,9 +294,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_root_hash">
-<code class="sig-name descname">get_root_hash</code><span class="sig-paren">(</span><em class="sig-param">branch_name_or_commit_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_root_hash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_root_hash" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_root_hash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">branch_name_or_commit_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_root_hash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_root_hash" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the root hash at the provided branch or commit-hash.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -312,7 +314,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_tags">
 <code class="sig-name descname">get_tags</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_tags"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_tags" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves all tags and their commits hashes within the project.</p>
@@ -329,7 +331,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.get_user_id">
 <code class="sig-name descname">get_user_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.get_user_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.get_user_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the identity of the current user of this project.</p>
@@ -343,9 +345,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.make_commit">
-<code class="sig-name descname">make_commit</code><span class="sig-paren">(</span><em class="sig-param">branch_name</em>, <em class="sig-param">parents</em>, <em class="sig-param">root_hash</em>, <em class="sig-param">core_objects</em>, <em class="sig-param">msg</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.make_commit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.make_commit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">make_commit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">branch_name</span></em>, <em class="sig-param"><span class="n">parents</span></em>, <em class="sig-param"><span class="n">root_hash</span></em>, <em class="sig-param"><span class="n">core_objects</span></em>, <em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.make_commit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.make_commit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes a commit to data base. Based on the root hash and commit message a new        <a class="reference external" href="mailto:{&#37;&#52;&#48;link">{<span>&#64;</span>link</a> module:Storage.CommitObject} (with returned hash)        is generated and insert together with the core objects to the database on the server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -369,9 +371,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.project.Project.set_branch_hash">
-<code class="sig-name descname">set_branch_hash</code><span class="sig-paren">(</span><em class="sig-param">branch_name</em>, <em class="sig-param">new_hash</em>, <em class="sig-param">old_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.set_branch_hash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.set_branch_hash" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_branch_hash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">branch_name</span></em>, <em class="sig-param"><span class="n">new_hash</span></em>, <em class="sig-param"><span class="n">old_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/project.html#Project.set_branch_hash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.project.Project.set_branch_hash" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates the head of the branch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -398,6 +400,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -456,12 +459,13 @@
         <li class="right" >
           <a href="core.html" title="Core"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Project</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Vanderbilt University, ISIS.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

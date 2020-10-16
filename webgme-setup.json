@@ -8,6 +8,10 @@
       "PythonBindingsError": {
         "src": "src/plugins/PythonBindingsError",
         "test": "test/plugins/PythonBindingsError"
+      },
+      "PythonFileIO": {
+        "src": "src/plugins/PythonFileIO",
+        "test": "test/plugins/PythonFileIO"
       }
     },
     "routers": {

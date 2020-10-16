@@ -85,6 +85,7 @@ class WebGME(object):
             elif res['err']['type'] == 'CoreInternalError':
                 raise CoreInternalError(res['err'])
             else:
+                self.logger.error(res['err'])
                 raise JSError(res['err'])
 
         if 'res' in res:
