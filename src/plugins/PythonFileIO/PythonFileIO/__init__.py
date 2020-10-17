@@ -25,7 +25,7 @@ class PythonFileIO(PluginBase):
 
         name = core.get_attribute(active_node, 'name')
 
-        binary_file = open('./src/plugins/PythonFileIO/PythonFileIO/heart.png','br')
+        binary_file = open('./src/plugins/PythonFileIO/PythonFileIO/heart.png','rb')
         binary_content = binary_file.read()
 
         bin_hash = self.add_file('heart.png', binary_content)

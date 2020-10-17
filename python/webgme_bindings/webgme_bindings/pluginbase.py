@@ -191,7 +191,7 @@ class PluginBase(object):
         :raises JSError: The result of the execution.
         """
         content_as_string = self._send({'name': 'getBinFile', 'args': [metadata_hash, sub_path]})
-        return base64.decodebytes(content_as_string.encode('UTF-8'))
+        return base64.b64decode(content_as_string.encode('UTF-8'))
 
     def get_current_config(self):
         """
