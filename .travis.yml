@@ -13,8 +13,8 @@ node_js:
 
 before_script:
   - "npm install webgme-engine"
-  - "pyenv install 3.8.0"
-  - "pyenv global 3.8.0"
+  - "pyenv install --list"
+  - "pyenv global 3.7.1"
   - "sudo pip3 install -U pip"
   - "cd python/webgme_bindings"
   - "sudo pip3 install -e ."
