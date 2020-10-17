@@ -5,9 +5,9 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="webgme_bindings",
-    version="1.0.2",
+    version="1.0.4",
     license='MIT',
-    author="Patrik Meijer",
+    author="Tamas Kecskes",
     author_email="webgme@vanderbilt.edu",
     description="Package containing webgme-bindings through zeromq",
     long_description=long_description,
@@ -27,5 +27,8 @@ setuptools.setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ),
 )

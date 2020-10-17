@@ -9,12 +9,13 @@ cache:
 node_js:
   - "8"
   - "10"
+  - "12"
 
 before_script:
+  - "npm install webgme-engine"
   - "sudo pip install -U pip"
   - "cd python/webgme_bindings"
   - "sudo pip install -e ."
-  - "npm install webgme-engine"
 
 script:
   - "npm run test"

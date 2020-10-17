@@ -760,27 +760,41 @@ function CoreZMQ(project, core, mainLogger, opts) {
                 } catch (e) {
                     return Q.reject(e);
                 }
+            case 'getBinFile':
+                try {
+                    return plugin[req.name](req.args[0], req.args[1], null)
+                    .then(bufferContent => {
+                        return Q(bufferContent.toString());
+                    })
+                    .catch(Q.reject);
+                } catch (e) {
+                    return Q.reject(e);
+                }
             case 'addFile':
                 try {
-                    // compaitable with add_file(name, content)
-                    if (req.args.length == 2) {
-                        // -> addArtifact
+                    const is_bytes = req.args[2];
+                    let data;
+                    if (is_bytes) {
+                        data = Buffer.from(req.args[1])
                     }else{
-                        const is_bytes = req.args[2] // boolean
-                        let data;
-                        if (is_bytes) {
-                            data = Buffer.from(req.args[1], 'base64')
-                        }else{
-                            data = req.args[1]
-                        }
-                        return plugin[req.name](req.args[0], data);
+                        data = req.args[1]
                     }
+                    return plugin[req.name](req.args[0], data);
                 } catch (e) {
                     return Q.reject(e);
                 }
             case 'addArtifact':
                 try {
-                    return plugin[req.name](req.args[0], req.args[1]);
+                    const files = {};
+                    for (const [key, value] of Object.entries(req.args[1])) {
+                        if (value.binary) {
+                            files[key] = Buffer.from(value.content);
+                        } else {
+                            files[key] = value.content;
+                        }
+                    }
+
+                    return plugin[req.name](req.args[0], files);
                 } catch (e) {
                     return Q.reject(e);
                 }

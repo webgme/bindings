@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>webgme_bindings.pluginbase &#8212; webgme_bindings 1.0.0 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -27,7 +28,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">webgme_bindings.pluginbase</a></li> 
       </ul>
     </div>  
 
@@ -37,7 +39,9 @@
           <div class="body" role="main">
             
   <h1>Source code for webgme_bindings.pluginbase</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">.webgme</span> <span class="kn">import</span> <span class="n">WebGME</span>
+<span></span><span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="kn">from</span> <span class="nn">.webgme</span> <span class="kn">import</span> <span class="n">WebGME</span>
 <span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">JSError</span><span class="p">,</span> <span class="n">CoreIllegalArgumentError</span><span class="p">,</span> <span class="n">CoreIllegalOperationError</span><span class="p">,</span> <span class="n">CoreInternalError</span>
 
 
@@ -136,13 +140,22 @@
 
 <span class="sd">        :param name: name of the file bundle.</span>
 <span class="sd">        :type name: str</span>
-<span class="sd">        :param files: Keys are file names and values the content (as strings).</span>
+<span class="sd">        :param files: Keys are file names and values the content (as strings or bytes).</span>
 <span class="sd">        :type files: dict</span>
 <span class="sd">        :returns: The metadata-hash (the &quot;id&quot;) of the uploaded artifact.</span>
 <span class="sd">        :rtype: str</span>
 <span class="sd">        :raises JSError: The result of the execution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;addArtifact&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">files</span><span class="p">]})</span></div>
+        <span class="n">extendedDict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">files</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
+            <span class="n">is_bytes</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+                <span class="n">is_bytes</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">extendedDict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">content</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">:</span> <span class="n">is_bytes</span><span class="p">}</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;addArtifact&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">extendedDict</span><span class="p">]})</span></div>
 
 <div class="viewcode-block" id="PluginBase.add_file"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.add_file">[docs]</a>    <span class="k">def</span> <span class="nf">add_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -151,12 +164,17 @@
 <span class="sd">        :param name: The name the file should be uploaded as.</span>
 <span class="sd">        :type name: str</span>
 <span class="sd">        :param content: The file content.</span>
-<span class="sd">        :type content: str</span>
+<span class="sd">        :type content: Union[str, bytes]</span>
 <span class="sd">        :returns: The metadata-hash (the &quot;id&quot;) of the uploaded file.</span>
 <span class="sd">        :rtype: str</span>
 <span class="sd">        :raises JSError: The result of the execution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;addFile&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">]})</span></div>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;UTF-8&quot;</span><span class="p">)</span>
+            <span class="n">is_bytes</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">is_bytes</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;addFile&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">is_bytes</span><span class="p">]})</span></div>
 
 <div class="viewcode-block" id="PluginBase.create_message"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.create_message">[docs]</a>    <span class="k">def</span> <span class="nf">create_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">severity</span><span class="o">=</span><span class="s1">&#39;info&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -200,6 +218,21 @@
 <span class="sd">        :raises JSError: The result of the execution.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getFile&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">metadata_hash</span><span class="p">]})</span></div>
+
+<div class="viewcode-block" id="PluginBase.get_bin_file"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.get_bin_file">[docs]</a>    <span class="k">def</span> <span class="nf">get_bin_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata_hash</span><span class="p">,</span> <span class="n">sub_path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the file from blob storage.</span>
+
+<span class="sd">        :param metadata_hash: the &quot;id&quot; of the file to retrieve.</span>
+<span class="sd">        :type metadata_hash: str</span>
+<span class="sd">        :param sub_path: the path of the file to retrieve if it is inside an artifact/complex blob.</span>
+<span class="sd">        :type sub_path: str</span>
+<span class="sd">        :returns: The file content.</span>
+<span class="sd">        :rtype: bytes</span>
+<span class="sd">        :raises JSError: The result of the execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">content_as_string</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;getBinFile&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">metadata_hash</span><span class="p">,</span> <span class="n">sub_path</span><span class="p">]})</span>
+        <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">decodebytes</span><span class="p">(</span><span class="n">content_as_string</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="PluginBase.get_current_config"><a class="viewcode-back" href="../../_static/pluginbase.html#webgme_bindings.pluginbase.PluginBase.get_current_config">[docs]</a>    <span class="k">def</span> <span class="nf">get_current_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -255,6 +288,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_send</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="s1">&#39;resultSetError&#39;</span><span class="p">,</span> <span class="s1">&#39;args&#39;</span><span class="p">:[</span><span class="n">message</span><span class="p">]})</span></div></div>
 </pre></div>
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -295,12 +329,13 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">webgme_bindings.pluginbase</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Vanderbilt University, ISIS.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

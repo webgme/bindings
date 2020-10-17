@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PluginBase &#8212; webgme_bindings 1.0.0 documentation</title>
     <link rel="stylesheet" href="classic.css" type="text/css" />
     <link rel="stylesheet" href="pygments.css" type="text/css" />
@@ -34,7 +35,8 @@
         <li class="right" >
           <a href="../index.html" title="Welcome to webgme_bindings’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PluginBase</a></li> 
       </ul>
     </div>  
 
@@ -45,38 +47,38 @@
             
   <div class="section" id="module-webgme_bindings.pluginbase">
 <span id="pluginbase"></span><h1>PluginBase<a class="headerlink" href="#module-webgme_bindings.pluginbase" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="webgme_bindings.pluginbase.PluginBase">
-<em class="property">class </em><code class="sig-prename descclassname">webgme_bindings.pluginbase.</code><code class="sig-name descname">PluginBase</code><span class="sig-paren">(</span><em class="sig-param">webgme</em>, <em class="sig-param">commit_hash</em>, <em class="sig-param">branch_name=None</em>, <em class="sig-param">active_node=''</em>, <em class="sig-param">active_selection=None</em>, <em class="sig-param">nsp=''</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">webgme_bindings.pluginbase.</code><code class="sig-name descname">PluginBase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">webgme</span></em>, <em class="sig-param"><span class="n">commit_hash</span></em>, <em class="sig-param"><span class="n">branch_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">active_node</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">active_selection</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nsp</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is the base-class for webgme-plugins in Python. Use <a class="reference external" href="https://github.com/webgme/webgme-cli">webgme-cli</a>     for generating the boiler-plate code for a python-plugin.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.META">
 <em class="property">property </em><code class="sig-name descname">META</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.META" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dictionary from name of meta-node to node dict.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.active_node">
-<code class="sig-name descname">active_node</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.active_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">active_node</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.active_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>The active-node of the current invocation (dict)</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.active_selection">
-<code class="sig-name descname">active_selection</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.active_selection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">active_selection</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.active_selection" title="Permalink to this definition">¶</a></dt>
 <dd><p>The active-selection nodes of the current invocation (list of dict)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.add_artifact">
-<code class="sig-name descname">add_artifact</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">files</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.add_artifact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.add_artifact" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_artifact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">files</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.add_artifact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.add_artifact" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds multiple files to the blob storage and bundles them as an artifact of which the hash is added to the        plugin-result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – name of the file bundle.</p></li>
-<li><p><strong>files</strong> (<em>dict</em>) – Keys are file names and values the content (as strings).</p></li>
+<li><p><strong>files</strong> (<em>dict</em>) – Keys are file names and values the content (as strings or bytes).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -91,15 +93,15 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.add_file">
-<code class="sig-name descname">add_file</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">content</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.add_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">content</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.add_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.add_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a file to the blob storage and adds it to the plugin-result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – The name the file should be uploaded as.</p></li>
-<li><p><strong>content</strong> (<em>str</em>) – The file content.</p></li>
+<li><p><strong>content</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>bytes</em><em>]</em>) – The file content.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -114,27 +116,27 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.branch_name">
-<code class="sig-name descname">branch_name</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.branch_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">branch_name</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.branch_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current branch (str or None)</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.commit_hash">
-<code class="sig-name descname">commit_hash</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.commit_hash" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">commit_hash</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.commit_hash" title="Permalink to this definition">¶</a></dt>
 <dd><p>The current commit-hash (str)</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.core">
-<code class="sig-name descname">core</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.core" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">core</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.core" title="Permalink to this definition">¶</a></dt>
 <dd><p>An instance of webgme_bindings.Core</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.create_message">
-<code class="sig-name descname">create_message</code><span class="sig-paren">(</span><em class="sig-param">node</em>, <em class="sig-param">message</em>, <em class="sig-param">severity='info'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.create_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.create_message" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">severity</span><span class="o">=</span><span class="default_value">'info'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.create_message"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.create_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new message for the user and adds it to the result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -161,9 +163,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.get_artifact">
-<code class="sig-name descname">get_artifact</code><span class="sig-paren">(</span><em class="sig-param">metadata_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_artifact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_artifact" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_artifact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_artifact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_artifact" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves all the files in the artifact from the blob storage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -181,7 +183,30 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="webgme_bindings.pluginbase.PluginBase.get_bin_file">
+<code class="sig-name descname">get_bin_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata_hash</span></em>, <em class="sig-param"><span class="n">sub_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_bin_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_bin_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the file from blob storage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metadata_hash</strong> (<em>str</em>) – the “id” of the file to retrieve.</p></li>
+<li><p><strong>sub_path</strong> (<em>str</em>) – the path of the file to retrieve if it is inside an artifact/complex blob.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The file content.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bytes</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#webgme_bindings.exceptions.JSError" title="webgme_bindings.exceptions.JSError"><strong>JSError</strong></a> – The result of the execution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.get_current_config">
 <code class="sig-name descname">get_current_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_current_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_current_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the current configuration of the plugin that was set by the user and plugin manager.</p>
@@ -198,9 +223,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.get_file">
-<code class="sig-name descname">get_file</code><span class="sig-paren">(</span><em class="sig-param">metadata_hash</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">metadata_hash</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.get_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.get_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the file from blob storage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -218,39 +243,39 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.gme_config">
 <em class="property">property </em><code class="sig-name descname">gme_config</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.gme_config" title="Permalink to this definition">¶</a></dt>
 <dd><p>A nested dictionary with <a class="reference external" href="https://github.com/webgme/webgme/tree/master/config">configuration parameters for webgme</a>.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.logger">
-<code class="sig-name descname">logger</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.logger" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">logger</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>Instance of logger (regular python logger)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.main">
 <code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main invocation point for a plugin. This must be implemented in the derived classes.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.namespace">
-<code class="sig-name descname">namespace</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.namespace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">namespace</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.namespace" title="Permalink to this definition">¶</a></dt>
 <dd><p>The namespace the plugin is running under (str)</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.project">
-<code class="sig-name descname">project</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.project" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">project</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.project" title="Permalink to this definition">¶</a></dt>
 <dd><p>An instance of webgme_bindings.Project</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.result_set_error">
-<code class="sig-name descname">result_set_error</code><span class="sig-paren">(</span><em class="sig-param">message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.result_set_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.result_set_error" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">result_set_error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.result_set_error"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.result_set_error" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the error reason for the failure of the plugin. Should be used together with result_set_success        as in case of successfull execution, this message is ignored. Also, only the first message will be visible        for the user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -265,9 +290,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.result_set_success">
-<code class="sig-name descname">result_set_success</code><span class="sig-paren">(</span><em class="sig-param">success</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.result_set_success"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.result_set_success" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">result_set_success</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">success</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.result_set_success"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.result_set_success" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the the result value of the execution of the plugin. In python, if the plugin exits with 0,        the value will be true.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -282,15 +307,15 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.root_node">
-<code class="sig-name descname">root_node</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.root_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">root_node</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.root_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>The root-node of the current invocation (dict)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="webgme_bindings.pluginbase.PluginBase.send_notification">
-<code class="sig-name descname">send_notification</code><span class="sig-paren">(</span><em class="sig-param">message</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.send_notification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.send_notification" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">send_notification</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/webgme_bindings/pluginbase.html#PluginBase.send_notification"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.send_notification" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends a notification back to the invoker of the plugin, can be used to notify about progress.        Message can either be a string or a dictionary with keys, ‘message’, ‘progress’, ‘severity’        and ‘toBranch’. If an object is passed ‘message’ must be provided - all other are optional.        ‘progress’ - Approximate progress (in %) of the plugin at time of sending.        ‘severity’ - Severity level (‘success’, ‘info’, ‘warn’, ‘error’)        ‘toBranch’ - If true, and the plugin is running on the server on a branch the notification will be        broadcast to all sockets in the branch room.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -308,9 +333,9 @@
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="webgme_bindings.pluginbase.PluginBase.util">
-<code class="sig-name descname">util</code><em class="property"> = None</em><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.util" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">util</code><a class="headerlink" href="#webgme_bindings.pluginbase.PluginBase.util" title="Permalink to this definition">¶</a></dt>
 <dd><p>An instance of webgme_bindings.Util</p>
 </dd></dl>
 
@@ -319,6 +344,7 @@
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -377,12 +403,13 @@
         <li class="right" >
           <a href="../index.html" title="Welcome to webgme_bindings’s documentation!"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">PluginBase</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Vanderbilt University, ISIS.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>

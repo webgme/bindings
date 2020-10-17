@@ -99,13 +99,22 @@ class PluginBase(object):
 
         :param name: name of the file bundle.
         :type name: str
-        :param files: Keys are file names and values the content (as strings).
+        :param files: Keys are file names and values the content (as strings or bytes).
         :type files: dict
         :returns: The metadata-hash (the "id") of the uploaded artifact.
         :rtype: str
         :raises JSError: The result of the execution.
         """
-        return self._send({'name': 'addArtifact', 'args': [name, files]})
+        extendedDict = {}
+        for key in files:
+            content = files[key];
+            is_bytes = False
+            if isinstance(content, bytes):
+                content = base64.b64encode(content).decode("UTF-8")
+                is_bytes = True
+            extendedDict[key] = {'content': content, 'binary': is_bytes}
+
+        return self._send({'name': 'addArtifact', 'args': [name, extendedDict]})
 
     def add_file(self, name, content):
         """
@@ -168,6 +177,21 @@ class PluginBase(object):
         :raises JSError: The result of the execution.
         """
         return self._send({'name': 'getFile', 'args': [metadata_hash]})
+
+    def get_bin_file(self, metadata_hash, sub_path = None):
+        """
+        Retrieves the file from blob storage.
+
+        :param metadata_hash: the "id" of the file to retrieve.
+        :type metadata_hash: str
+        :param sub_path: the path of the file to retrieve if it is inside an artifact/complex blob.
+        :type sub_path: str
+        :returns: The file content.
+        :rtype: bytes
+        :raises JSError: The result of the execution.
+        """
+        content_as_string = self._send({'name': 'getBinFile', 'args': [metadata_hash, sub_path]})
+        return base64.b64decode(content_as_string.encode('UTF-8'))
 
     def get_current_config(self):
         """

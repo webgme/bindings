@@ -1,9 +1,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>webgme_bindings.webgme &#8212; webgme_bindings 1.0.0 documentation</title>
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -27,7 +28,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">webgme_bindings.webgme</a></li> 
       </ul>
     </div>  
 
@@ -124,6 +126,7 @@
             <span class="k">elif</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;err&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;CoreInternalError&#39;</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">CoreInternalError</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;err&#39;</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;err&#39;</span><span class="p">])</span>
                 <span class="k">raise</span> <span class="n">JSError</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;err&#39;</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="s1">&#39;res&#39;</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
@@ -132,6 +135,7 @@
             <span class="k">return</span> <span class="kc">None</span></div></div>
 </pre></div>
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
@@ -172,12 +176,13 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">webgme_bindings 1.0.0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">webgme_bindings.webgme</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2018, Vanderbilt University, ISIS.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.2.1.
     </div>
   </body>
 </html>
