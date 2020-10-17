@@ -14,7 +14,7 @@ node_js:
 before_script:
   - "npm install webgme-engine"
   - "pyenv versions"
-  - "pyenv global 3.7"
+  - "pyenv global 3.7.1"
   - "sudo pip install -U pip"
   - "cd python/webgme_bindings"
   - "sudo pip install -e ."
