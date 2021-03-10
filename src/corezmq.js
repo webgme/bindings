@@ -872,9 +872,10 @@ function CoreZMQ(project, core, mainLogger, opts) {
 
         function bindToPortRec(port) {
             const deferred = Q.defer();
+            const errorText = new RegExp('[a|A]ddress.*in use', 'g');
             responder.bind(address || `tcp://127.0.0.1:${port}`, (err) => {
                 if (err) {
-                    if (!address && err.message.indexOf('Address in use') > -1) {
+                    if (!address && errorText.test(err.message)) {
                         logger.warn('Port', port, 'already in use attempting to increase port number');
                         if (port < maxAttempts) {
                             bindToPortRec(port + 1)

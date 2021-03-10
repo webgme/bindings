@@ -88,7 +88,6 @@ describe.skip('PythonBindingsWaitMerge', function () {
             // this should be auto-merged
             project.getBranchHash('test')
                 .then(function (branchHash) {
-                    console.log(commitHash, branchHash);
                     expect(branchHash).not.to.equal(commitHash);
                     commitHash = branchHash;
                 })
@@ -120,7 +119,6 @@ describe.skip('PythonBindingsWaitMerge', function () {
 
             project.getBranchHash('test')
                 .then(function (branchHash) {
-                    console.log(commitHash, branchHash);
                     expect(branchHash).to.not.equal(commitHash);
                     commitHash = branchHash;
                 })
