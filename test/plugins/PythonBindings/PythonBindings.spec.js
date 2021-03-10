@@ -14,6 +14,7 @@ describe('PythonBindings', function () {
         commitHash;
 
     before(function (done) {
+        this.timeout(10000);
         testFixture.clearDBAndGetGMEAuth(gmeConfig, projectName)
             .then(function (gmeAuth_) {
                 gmeAuth = gmeAuth_;

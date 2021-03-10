@@ -1,0 +1,32 @@
+{
+  "id": "PythonBindingsWait",
+  "name": "PythonBindingsWait",
+  "version": "0.1.0",
+  "description": "",
+  "icon": {
+    "class": "glyphicon glyphicon-cog",
+    "src": ""
+  },
+  "disableServerSideExecution": false,
+  "disableBrowserSideExecution": true,
+  "dependencies": [],
+  "writeAccessRequired": false,
+  "configStructure": [
+    {
+      "name": "wait",
+      "displayName": "waitTime",
+      "description": "Amount of seconds to wait before execution",
+      "value": 0,
+      "valueType": "integer",
+      "readOnly": false
+    },
+    {
+      "name": "modify",
+      "displayName": "modify",
+      "description": "Flag to show if execution should modify model",
+      "value": false,
+      "valueType": "boolean",
+      "readOnly": false
+    }
+  ]
+}

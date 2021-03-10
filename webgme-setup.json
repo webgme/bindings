@@ -12,6 +12,10 @@
       "PythonFileIO": {
         "src": "src/plugins/PythonFileIO",
         "test": "test/plugins/PythonFileIO"
+      },
+      "PythonBindingsWait": {
+        "src": "src/plugins/PythonBindingsWait",
+        "test": "test/plugins/PythonBindingsWait"
       }
     },
     "routers": {
