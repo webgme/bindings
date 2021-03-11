@@ -11,22 +11,18 @@ define([
     'q',
     'plugin/PluginConfig',
     'text!./metadata.json',
-    'plugin/PluginBase',
-    'module'
+    'plugin/PluginBase'
 ], function (
     Q,
     PluginConfig,
     pluginMetadata,
-    PluginBase,
-    module) {
+    PluginBase) {
     'use strict';
 
     pluginMetadata = JSON.parse(pluginMetadata);
-    const path = require('path');
-    // Modify these as needed..
     const START_PORT = 5555;
     const COMMAND = 'python';
-    const SCRIPT_FILE = path.join(path.dirname(module.uri), 'run_plugin.py');
+    const SCRIPT_FILE = 'src/plugins/PythonBindingsWait/run_plugin.py';
 
     /**
      * Initializes a new instance of PythonBindings.
@@ -62,6 +58,7 @@ define([
      * @param {function(null|Error|string, plugin.PluginResult)} callback - the result callback
      */
     PythonBindingsWait.prototype.main = function (callback) {
+        const path = require('path');
         const CoreZMQ = require(path.join(process.cwd(), 'index')).CoreZMQ;
         const cp = require('child_process');
         const logger = this.logger;
@@ -84,7 +81,6 @@ define([
 
             const childProc = cp.spawn(program, args, options);
 
-            logger.error('child spawned',this.getCurrentConfig());
             childProc.stdout.on('data', data => {
                 logger.info(data.toString());
                 // logger.debug(data.toString());
