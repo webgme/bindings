@@ -1,0 +1,32 @@
+{
+  "id": "PythonExtraFunctions",
+  "name": "PythonExtraFunctions",
+  "version": "0.1.0",
+  "description": "",
+  "icon": {
+    "class": "glyphicon glyphicon-cog",
+    "src": ""
+  },
+  "disableServerSideExecution": false,
+  "disableBrowserSideExecution": true,
+  "dependencies": [],
+  "writeAccessRequired": false,
+  "configStructure": [
+    {
+      "name": "one",
+      "displayName": "paramOne",
+      "description": "First parameter to pass to the function",
+      "value": 0,
+      "valueType": "integer",
+      "readOnly": false
+    },
+    {
+      "name": "two",
+      "displayName": "paramTwo",
+      "description": "Second parameter to pass to the extra function",
+      "value": false,
+      "valueType": "boolean",
+      "readOnly": false
+    }
+  ]
+}

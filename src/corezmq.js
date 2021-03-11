@@ -813,7 +813,15 @@ function CoreZMQ(project, core, mainLogger, opts) {
                     return Q.reject(e);
                 }
             default:
-                return Q.reject(new Error(`Unexpected request name ${req.name} of type [${req.type}]`));
+                // There will not be an error if the plugin instance has the required function.
+                // It will only pass all the arguments as a proxy
+
+                if (typeof plugin[req.name] === 'function') {
+                    logger.info(`Special function [${req.name}] is called`);
+                    return Q(plugin[req.name](...req.args));
+                } else {
+                    return Q.reject(new Error(`Unexpected request name ${req.name} of type [${req.type}]`));
+                }
         }
     }
 
