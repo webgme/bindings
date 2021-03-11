@@ -29,7 +29,7 @@ class PythonBindingsWait(PluginBase):
 
         logger.info('ActiveNode at "{0}" has name {1}'.format(core.get_path(active_node), name))
 
-        logger.info(f'Will wait for {config["wait"]} seconds.')
+        logger.info('Will wait for {0} seconds.'.format(config['wait']))
         time.sleep(config['wait'])
         if config['modify'] == True:
             now = datetime.now()

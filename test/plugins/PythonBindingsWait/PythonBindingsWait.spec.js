@@ -297,7 +297,6 @@ describe('PythonBindingsWait', function () {
             // this should be the forked plugin
             project.getBranchHash('test')
                 .then(function (branchHash) {
-                    console.log(commitHash, branchHash);
                     expect(branchHash).to.equal(commitHash);
                     commitHash = branchHash;
                 })
@@ -328,7 +327,6 @@ describe('PythonBindingsWait', function () {
 
             project.getBranchHash('test')
                 .then(function (branchHash) {
-                    console.log(commitHash, branchHash);
                     expect(branchHash).to.not.equal(commitHash);
                     commitHash = branchHash;
                 })
