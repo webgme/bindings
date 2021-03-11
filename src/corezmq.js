@@ -813,7 +813,15 @@ function CoreZMQ(project, core, mainLogger, opts) {
                     return Q.reject(e);
                 }
             default:
-                return Q.reject(new Error(`Unexpected request name ${req.name} of type [${req.type}]`));
+                // There will not be an error if the plugin instance has the required function.
+                // It will only pass all the arguments as a proxy
+
+                if (typeof plugin[req.name] === 'function') {
+                    logger.info(`Special function [${req.name}] is called`);
+                    return Q(plugin[req.name](...req.args));
+                } else {
+                    return Q.reject(new Error(`Unexpected request name ${req.name} of type [${req.type}]`));
+                }
         }
     }
 
@@ -872,9 +880,10 @@ function CoreZMQ(project, core, mainLogger, opts) {
 
         function bindToPortRec(port) {
             const deferred = Q.defer();
+            const errorText = new RegExp('[a|A]ddress.*in use', 'g');
             responder.bind(address || `tcp://127.0.0.1:${port}`, (err) => {
                 if (err) {
-                    if (!address && err.message.indexOf('Address in use') > -1) {
+                    if (!address && errorText.test(err.message)) {
                         logger.warn('Port', port, 'already in use attempting to increase port number');
                         if (port < maxAttempts) {
                             bindToPortRec(port + 1)
