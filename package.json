@@ -32,7 +32,8 @@
     "server_test": "node tutorial_server.js",
     "client_test": "node tutorial_client.js",
     "update_docs_json": "./node_modules/.bin/jsdoc -c jsdoc_conf_engine.json",
-    "gen_api": "node ./scripts/generate_api.js"
+    "gen_api": "node ./scripts/generate_api.js",
+    "debugger_test": "node debugger_test.js"
   },
   "peerDependencies": {
     "webgme-engine": "^2.25.2"

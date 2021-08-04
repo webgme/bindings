@@ -34,7 +34,7 @@ if not os.path.isfile(COREZMQ_SERVER_FILE):
     COREZMQ_SERVER_FILE = os.path.join(os.getcwd(), 'bin', 'corezmq_server.js')
 
 # Star the server (see bin/corezmq_server.js for more options e.g. for how to pass a pluginConfig)
-node_process = subprocess.Popen(['node', COREZMQ_SERVER_FILE, PROJECT_NAME, '-p', PORT, '-m', METADATA_PATH],
+node_process = subprocess.Popen(['node', COREZMQ_SERVER_FILE, PROJECT_NAME, '-i', 'PythonBindingsWait', '-p', PORT, '-m', METADATA_PATH],
                                 stdout=sys.stdout, stderr=sys.stderr)
 
 logger.info('Node-process running at PID {0}'.format(node_process.pid))

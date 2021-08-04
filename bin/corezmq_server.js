@@ -11,11 +11,13 @@ const Command = require('commander').Command;
 const CoreZMQ = require('../src/corezmq');
 const STORAGE_CONSTANTS = webgme.CONSTANTS.STORAGE;
 const getPluginMock = require('./getPluginMock');
+const getPlugin = require('./getRealPlugin');
 const Core = webgme.Core;
 
 /**
  *
  * @param {object} parameters
+ * @param {string} parameters.pluginId
  * @param {string} parameters.projectName
  * @param {GmeConfig} parameters.gmeConfig
  * @param {GmeLogger} parameters.logger
@@ -106,17 +108,43 @@ const main = (parameters, callback) => {
             })
     }
 
+    let project = null;
+    let core = null;
     projectDeferred
-        .then((project) => {
-
-            zmqServer = new CoreZMQ(project, new Core(project, {
+        .then(project_ => {
+            project = project_;
+            core = new Core(project, {
                 globConf: parameters.gmeConfig,
                 logger: parameters.logger.fork('Core')
-            }), parameters.logger, {
+            });
+            if (parameters.pluginId) {
+                return getPlugin(
+                    parameters.pluginId || 'PythonBindings',
+                    webgme,
+                    parameters.serverUrl,
+                    webgmeToken, 
+                    parameters.gmeConfig, 
+                    parameters.logger, 
+                    parameters.pluginMetadataPath, 
+                    parameters.pluginConfigPath, 
+                    core, 
+                    project);
+            } else {
+                return Q(getPluginMock(
+                    parameters.serverUrl, 
+                    webgmeToken, 
+                    parameters.gmeConfig, 
+                    parameters.logger,
+                    parameters.pluginMetadataPath, 
+                    parameters.pluginConfigPath));
+            }
+        })
+        .then((plugin) => {
+
+            zmqServer = new CoreZMQ(project, core, parameters.logger, {
                 port: parseInt(parameters.port || 5555),
                 address: parameters.address,
-                plugin: getPluginMock(parameters.serverUrl, webgmeToken, parameters.gmeConfig, parameters.logger,
-                    parameters.pluginMetadataPath, parameters.pluginConfigPath),
+                plugin: plugin,
             });
 
             return zmqServer.startServer();
@@ -154,6 +182,7 @@ if (require.main === module) {
         .version('1.0.0')
         .arguments('<projectName>')
         .description('Starts a zero-mq server exposing the core and project API at the provided project.')
+        .option('-i, --pluginId [string]', 'The pluginId you wish to debug, if not given mock js wrapper will be used')
         .option('-p, --port [number]', 'Port the server should listen at [5555]', 5555)
         .option('-a, --address [string]', 'If given the port is not used and the server will listen at the ' +
             'given address.', '')
@@ -171,6 +200,7 @@ if (require.main === module) {
             console.log('  Examples:');
             console.log();
             console.log('    $ node coremq_server.js MyProject');
+            console.log('    $ node coremq_server.js MyProject -i MyPluginId');
             console.log('    $ node coremq_server.js MyProject -m ./src/plugins/MyPythonPlugin/metadata.json');
             console.log('    $ node coremq_server.js MyProject -p 5656 -s http://127.0.0.1:8888');
             console.log();
