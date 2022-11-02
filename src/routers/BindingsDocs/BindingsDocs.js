@@ -50,7 +50,7 @@ function initialize(middlewareOpts) {
         res.sendFile(fileName, options, function (err) {
             if (err) {
                 logger.error('Failed to send ' + fileName, err);
-                res.status(err.status).end();
+                res.status(err.status || 404).end();
             }
         });
     }
