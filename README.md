@@ -136,6 +136,14 @@ Compatible clients (e.g. python) and server (the npm module) should always have 
 
 (If a new major version of `webgme-bindings` is released without any new requirements on webgme-engine the last step still needs to be performed.)
 
+### Running UnitTests
+1. start mongodb server at default port
+2. install `python`, `pip` and `venv` (could use system wide python too)
+3. create venv `python3 -m virtualenv venv`
+4. activate venv `source venv/bin/activate`
+5. install bidings as a python package `cd python/webgme_bindings` and `pip install -e .`
+6. `npm run test`
+
 ### Creating new NPM release
  ```
  npm install
