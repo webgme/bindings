@@ -36,7 +36,7 @@
     "debugger_test": "node debugger_test.js"
   },
   "peerDependencies": {
-    "webgme-engine": "^2.25.2"
+    "webgme-engine": "^2.29.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -52,10 +52,11 @@
     "jsdoc-json": "^2.0.2",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
-    "webgme-engine": "^2.25.2"
+    "webgme-engine": "^2.29.0"
   },
   "dependencies": {
     "bindings": "^1.5.0",
+    "commander": "^11.1.0",
     "q": "^1.5.1",
     "zeromq": "^5.1.0"
   }
