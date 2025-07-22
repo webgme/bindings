@@ -10,7 +10,7 @@
  * @author pmeijer / https://github.com/pmeijer
  */
 
-const zmq = require('zeromq');
+const zmq = require('zeromq/v5-compat');
 const Q = require('q');
 const pluginUtil = require('webgme-engine/src/plugin/util');
 
