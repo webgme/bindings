@@ -7,6 +7,9 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22]
 
     steps:
       - name: Checkout code
@@ -18,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20, 22, 24
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm install
       - name: Run tests
