@@ -154,6 +154,18 @@ class PluginBase(object):
         """
         return self._send({'name': 'createMessage', 'args': [node, message, severity]})
 
+    def get_file_metadata(self, metadata_hash):
+        """
+        Retrieves the metadata of the file from blob storage.
+
+        :param metadata_hash: the "id" of the file to retrieve.
+        :type metadata_hash: str
+        :returns: The metadata of the file.
+        :rtype: dict
+        :raises JSError: The result of the execution.
+        """
+        return self._send({'name': 'getFileMetadata', 'args': [metadata_hash]})
+
     def get_artifact(self, metadata_hash):
         """
         Retrieves all the files in the artifact from the blob storage.

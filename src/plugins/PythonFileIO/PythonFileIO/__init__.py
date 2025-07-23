@@ -35,6 +35,9 @@ class PythonFileIO(PluginBase):
             self.result_set_success(False)
             self.result_set_error('simple binary content mismatch')
 
+        file_metadata = self.get_file_metadata(bin_hash)
+        logger.info(file_metadata)
+
         arti_hash = self.add_artifact('myArti', {'text.txt':'just because', 'heart.png':binary_content})
         retrieved_content_from_arti = self.get_bin_file(arti_hash,'heart.png')
         if binary_content != retrieved_content_from_arti:
