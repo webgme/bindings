@@ -5,9 +5,9 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="webgme_bindings",
-    version="1.0.4",
+    version="1.3.0",
     license='MIT',
-    author="Tamas Kecskes",
+    author="Tamas Kecskes, Patrik Meijer",
     author_email="webgme@vanderbilt.edu",
     description="Package containing webgme-bindings through zeromq",
     long_description=long_description,
