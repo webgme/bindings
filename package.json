@@ -55,7 +55,6 @@
     "webgme-engine": "^2.25.2"
   },
   "dependencies": {
-    "bindings": "^1.5.0",
     "commander": "^11.1.0",
     "q": "^1.5.1",
     "zeromq": "^6.5.0"
