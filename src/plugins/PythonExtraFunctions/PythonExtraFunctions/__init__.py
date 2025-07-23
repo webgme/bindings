@@ -26,9 +26,13 @@ class PythonExtraFunctions(PluginBase):
         if config['one']:
             logger.info(self.promising(config['one']))
         self.additional(config['one'], config['two'])
+        self.asyncAwait()
 
     def additional(self, paramOne, paramTwo):
         return self._send({'name':'additional', 'args':[paramOne, paramTwo]})
-    
+
     def promising(self, paramOne):
         return self._send({'name':'promising', 'args':[paramOne]})
+
+    def asyncAwait(self):
+        return self._send({'name':'asyncAwait', 'args':[]})

@@ -152,14 +152,21 @@ define([
     PythonExtraFunctions.prototype.promising = function (paramOne) {
         const deferred = Q.defer();
         this.core.loadByPath(this.core.getRoot(this.activeNode), '/1')
-        .then(fco => {
-            this.logger.info('retrieved FCO', this.core.getAttribute(fco,'name'));
-            deferred.resolve(paramOne ? false : true);
-        })
-        .catch(deferred.reject);
+            .then(fco => {
+                this.logger.info('retrieved FCO', this.core.getAttribute(fco,'name'));
+                deferred.resolve(paramOne ? false : true);
+            })
+            .catch(deferred.reject);
 
         return deferred.promise;
     };
+
+    PythonExtraFunctions.prototype.asyncAwait = async function () {
+        const fco = await this.core.loadByPath(this.core.getRoot(this.activeNode), '/1');
+        const fcoName = this.core.getAttribute(fco,'name');
+        this.logger.info('retrieved FCO using async/await', fcoName);
+        return fcoName;
+    }
 
     return PythonExtraFunctions;
 });

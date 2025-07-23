@@ -103,6 +103,9 @@ nodejs PATH settings from the terminal's ~/.bashrc file(if using nvm for managin
 3. Set the project name and other associated variables in the `run_debug.py` file
 ![Pycharm Setting](images/pycharm_setting_rundebug.png "PyCharm Debug Config")
 
+### Exposing Extra Functionality
+If you need to expose more functionality from the javaScript process to the python plugin, you can do
+this by adding additional functions to your javascript plugin and then call these from the the python plugin. See [PythonExtraFunctions/PythonExtraFunctions.js](https://github.com/webgme/bindings/blob/master/src/plugins/PythonExtraFunctions/PythonExtraFunctions.js#L143-L169) and [PythonExtraFunctions/\_\_init\_\_.py](https://github.com/webgme/bindings/blob/master/src/plugins/PythonExtraFunctions/PythonExtraFunctions/__init__.py#L31-L38).
 
 
 ## Architectural Overview
