@@ -753,6 +753,12 @@ function CoreZMQ(project, core, mainLogger, opts) {
                     .then((node) => {
                         plugin[req.name](node, req.args[1], req.args[2]);
                     });
+            case 'getFileMetadata':
+                try {
+                    return plugin.blobClient.getMetadata(req.args[0]);
+                } catch (e) {
+                    return Q.reject(e);
+                }
             case 'getFile':
             case 'getArtifact':
                 try {
